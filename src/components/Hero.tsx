@@ -3,6 +3,7 @@
 import React from "react";
 import { ArrowRight, MapPin, CheckCircle2, CreditCard, LayoutDashboard, Globe, ChevronRight, Zap } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import { GMLogo } from "./GMLogo";
 
 export const Hero: React.FC = () => {
   const scrollToSection = (id: string) => {
@@ -16,12 +17,12 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="top"
-      className="relative min-h-screen bg-[#111E4A] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center overflow-hidden border-b border-slate-700/40"
+      className="relative min-h-screen bg-[#0C1A3A] pt-28 pb-16 md:pt-36 md:pb-24 flex items-center overflow-hidden border-b border-slate-700/40"
     >
       {/* Subtle dot grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#B8962E_1px,transparent_1px)] [background-size:36px_36px] opacity-[0.035] pointer-events-none" />
       {/* Soft glow blobs */}
-      <div className="absolute top-1/3 -left-40 w-96 h-96 bg-[#B8962E]/6 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 -left-40 w-96 h-96 bg-[#B8962E]/8 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-16 right-0 w-80 h-80 bg-[#1C2B5E]/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
@@ -31,7 +32,7 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-7 space-y-6 text-left">
 
             {/* Availability pill */}
-            <div className="inline-flex items-center gap-2 bg-[#1C2B5E] border border-[#B8962E]/30 px-4 py-1.5 rounded-full text-xs font-mono text-slate-300">
+            <div className="inline-flex items-center gap-2 bg-[#1C2B5E] border border-[#B8962E]/35 px-4 py-1.5 rounded-full text-xs font-mono text-slate-200">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B8962E] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#B8962E]" />
@@ -41,9 +42,9 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Main headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white tracking-tight leading-[1.12] uppercase">
+            <h1 className="text-3xl sm:text-5xl lg:text-[3.6rem] font-extrabold text-white tracking-tight leading-[1.12] uppercase">
               I BUILD DIGITAL SOLUTIONS THAT HELP BUSINESSES{" "}
-              <span className="text-[#B8962E] underline decoration-[#B8962E]/30 underline-offset-8">
+              <span className="text-[#B8962E] underline decoration-[#B8962E]/40 underline-offset-8">
                 WORK SMARTER.
               </span>
             </h1>
@@ -54,17 +55,17 @@ export const Hero: React.FC = () => {
             </p>
 
             {/* CTAs */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
               <button
                 onClick={() => scrollToSection("work")}
-                className="gold-btn px-8 py-3.5 rounded font-semibold text-xs tracking-widest uppercase flex items-center justify-center gap-2 group cursor-pointer"
+                className="gold-btn px-8 py-4 rounded-lg font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 group cursor-pointer shadow-lg"
               >
                 <span>VIEW MY WORK</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="gold-outline-btn px-8 py-3.5 rounded font-semibold text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer"
+                className="gold-outline-btn px-8 py-4 rounded-lg font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>START A PROJECT</span>
               </button>
@@ -89,29 +90,13 @@ export const Hero: React.FC = () => {
 
           {/* ── Right: Executive Business Solutions Showcase Card ── */}
           <div className="lg:col-span-5">
-            <div className="bg-[#1C2B5E] border border-[#B8962E]/30 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
+            <div className="bg-[#1C2B5E] border border-[#B8962E]/35 rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
 
-              {/* Card Header with GM Logo */}
-              <div className="bg-[#0A1230] p-5 border-b border-slate-700/60 flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="bg-white p-1.5 rounded-lg border border-[#B8962E]/40 flex items-center justify-center">
-                    <img
-                      src="/logo.png"
-                      alt="Gift Mukhwana"
-                      className="h-7 w-auto object-contain block"
-                    />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold text-white uppercase tracking-wider block">
-                      GIFT MUKHWANA
-                    </span>
-                    <span className="text-[10px] font-mono text-[#B8962E] uppercase block">
-                      SOFTWARE DEVELOPER
-                    </span>
-                  </div>
-                </div>
+              {/* Card Header with Vector GM Logo */}
+              <div className="bg-[#081229] p-5 border-b border-slate-700/60 flex items-center justify-between">
+                <GMLogo variant="full" mode="dark" size="sm" />
 
-                <div className="flex items-center space-x-1.5 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 rounded-full">
+                <div className="flex items-center space-x-1.5 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full shrink-0">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span>CLIENT READY</span>
                 </div>
@@ -125,7 +110,7 @@ export const Hero: React.FC = () => {
                 </div>
 
                 {/* Solution 1: FinTech & Payment Gateways */}
-                <div className="bg-[#111E4A] p-4 rounded-xl border border-slate-700/60 flex items-start space-x-3.5 hover:border-[#B8962E]/50 transition-colors">
+                <div className="bg-[#0C1A3A] p-4 rounded-xl border border-slate-700/60 flex items-start space-x-3.5 hover:border-[#B8962E]/50 transition-colors">
                   <div className="p-2.5 rounded-lg bg-[#1C2B5E] text-[#B8962E] border border-[#B8962E]/30 shrink-0">
                     <CreditCard className="w-5 h-5" />
                   </div>
@@ -140,7 +125,7 @@ export const Hero: React.FC = () => {
                 </div>
 
                 {/* Solution 2: Custom Business Systems & Dashboards */}
-                <div className="bg-[#111E4A] p-4 rounded-xl border border-slate-700/60 flex items-start space-x-3.5 hover:border-[#B8962E]/50 transition-colors">
+                <div className="bg-[#0C1A3A] p-4 rounded-xl border border-slate-700/60 flex items-start space-x-3.5 hover:border-[#B8962E]/50 transition-colors">
                   <div className="p-2.5 rounded-lg bg-[#1C2B5E] text-[#B8962E] border border-[#B8962E]/30 shrink-0">
                     <LayoutDashboard className="w-5 h-5" />
                   </div>
@@ -155,7 +140,7 @@ export const Hero: React.FC = () => {
                 </div>
 
                 {/* Solution 3: High-Performance Web Applications */}
-                <div className="bg-[#111E4A] p-4 rounded-xl border border-slate-700/60 flex items-start space-x-3.5 hover:border-[#B8962E]/50 transition-colors">
+                <div className="bg-[#0C1A3A] p-4 rounded-xl border border-slate-700/60 flex items-start space-x-3.5 hover:border-[#B8962E]/50 transition-colors">
                   <div className="p-2.5 rounded-lg bg-[#1C2B5E] text-[#B8962E] border border-[#B8962E]/30 shrink-0">
                     <Globe className="w-5 h-5" />
                   </div>
@@ -181,11 +166,11 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Card Bottom Call to Action */}
-              <div className="bg-[#0A1230] p-4 border-t border-slate-700/60 flex items-center justify-between">
+              <div className="bg-[#081229] p-4 border-t border-slate-700/60 flex items-center justify-between">
                 <span className="text-xs font-mono text-slate-300">Have a software requirement?</span>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="gold-btn px-4 py-2 rounded text-xs font-bold uppercase tracking-wider flex items-center space-x-1 cursor-pointer"
+                  className="gold-btn px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center space-x-1 cursor-pointer"
                 >
                   <span>INQUIRE SOLUTION</span>
                   <ChevronRight className="w-4 h-4" />

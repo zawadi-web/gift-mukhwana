@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { GMLogo } from "./GMLogo";
 
 interface NavbarProps {
   onStartProject?: () => void;
@@ -42,13 +43,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#111E4A]/98 backdrop-blur-md py-2.5 border-b border-[#B8962E]/25 shadow-lg shadow-black/25"
-          : "bg-[#111E4A] py-3.5 border-b border-white/10"
+          ? "bg-[#0C1A3A]/98 backdrop-blur-md py-3 border-b border-[#B8962E]/25 shadow-xl shadow-black/30"
+          : "bg-[#0C1A3A] py-4 border-b border-white/10"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
 
-        {/* ── Direct Static Logo Image (bypasses Next.js image optimization) ── */}
+        {/* ── Extracted Vector Logo (Transparent, Large, High Contrast) ── */}
         <a
           href="#top"
           onClick={(e) => {
@@ -58,14 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
           className="flex-shrink-0 focus:outline-none group flex items-center"
           aria-label="Gift Mukhwana — Home"
         >
-          <div className="bg-white px-3 py-1.5 rounded-lg border border-[#B8962E]/40 shadow-md group-hover:border-[#B8962E] transition-all flex items-center">
-            {/* Standard img tag guarantees direct loading from /public/logo.png */}
-            <img
-              src="/logo.png"
-              alt="Gift Mukhwana Logo"
-              className="h-8 sm:h-9 w-auto object-contain block"
-            />
-          </div>
+          <GMLogo variant="full" mode="dark" size="md" />
         </a>
 
         {/* ── Desktop Nav ── */}
@@ -85,10 +79,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
         <div className="hidden md:block flex-shrink-0">
           <button
             onClick={handleStartProject}
-            className="gold-btn px-5 py-2.5 rounded text-xs tracking-widest uppercase font-semibold flex items-center gap-1.5 shadow-sm cursor-pointer"
+            className="gold-btn px-6 py-3 rounded text-xs tracking-widest uppercase font-bold flex items-center gap-2 shadow-md cursor-pointer"
           >
             <span>START A PROJECT</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-4 h-4" />
           </button>
         </div>
 
@@ -96,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
         <div className="md:hidden flex items-center gap-2">
           <button
             onClick={handleStartProject}
-            className="gold-btn px-3 py-1.5 rounded text-[10px] tracking-widest uppercase font-bold"
+            className="gold-btn px-3.5 py-2 rounded text-[11px] tracking-widest uppercase font-bold"
           >
             START
           </button>
@@ -118,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
         }`}
         aria-hidden={!mobileMenuOpen}
       >
-        <div className="bg-[#111E4A] border-t border-[#B8962E]/20 px-6 pt-4 pb-8 space-y-4">
+        <div className="bg-[#0C1A3A] border-t border-[#B8962E]/20 px-6 pt-4 pb-8 space-y-4">
           <nav className="flex flex-col gap-4" aria-label="Mobile navigation">
             {NAV_LINKS.map((link) => (
               <button
@@ -133,7 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
           <div className="pt-4 border-t border-slate-800">
             <button
               onClick={handleStartProject}
-              className="w-full gold-btn py-3 rounded text-xs tracking-widest uppercase font-semibold flex items-center justify-center gap-2"
+              className="w-full gold-btn py-3.5 rounded text-xs tracking-widest uppercase font-bold flex items-center justify-center gap-2"
             >
               <span>START A PROJECT</span>
               <ArrowUpRight className="w-4 h-4" />

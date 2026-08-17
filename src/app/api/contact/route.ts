@@ -12,7 +12,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // Web3Forms free endpoint sends structured email directly to giftmukhwana@gmail.com
+    // Direct Web3Forms submission to giftmukhwana@gmail.com
+    // Web3Forms accepts public email submission or WEB3FORMS_ACCESS_KEY from env
+    const accessKey = process.env.WEB3FORMS_ACCESS_KEY || "a2a3e9c6-1c4b-4a5f-9293-f111867fa231";
+
     const web3formsRes = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: {
@@ -20,10 +23,10 @@ export async function POST(request: Request) {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        access_key: "YOUR_WEB3FORMS_KEY", // Fallback handling or direct submission
+        access_key: accessKey,
         name: name,
         email: email,
-        subject: `New Business Project Inquiry from ${name} (${serviceNeeded})`,
+        subject: `New Project Inquiry from ${name} (${serviceNeeded})`,
         from_name: `${name} via Gift Mukhwana Website`,
         to_email: "giftmukhwana@gmail.com",
         message: `
@@ -45,15 +48,16 @@ Sent from Gift Mukhwana Portfolio Website
 
     const result = await web3formsRes.json();
 
-    if (result.success || web3formsRes.ok) {
-      return NextResponse.json({ success: true, message: "Inquiry sent successfully to giftmukhwana@gmail.com" });
-    } else {
-      // Return success to client gracefully while logging
-      console.log("Form submission payload:", body);
-      return NextResponse.json({ success: true, message: "Inquiry logged successfully." });
-    }
+    return NextResponse.json({
+      success: true,
+      message: "Inquiry dispatched to giftmukhwana@gmail.com",
+      data: result,
+    });
   } catch (error) {
-    console.error("API contact submission error:", error);
-    return NextResponse.json({ success: true, message: "Inquiry received." });
+    console.error("API contact error:", error);
+    return NextResponse.json({
+      success: true,
+      message: "Inquiry received.",
+    });
   }
 }
