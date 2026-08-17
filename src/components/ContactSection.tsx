@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import { Mail, MapPin, Send, CheckCircle2, AlertCircle, MessageSquare, Clock } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle, MessageSquare, Clock, ExternalLink } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
@@ -60,20 +60,12 @@ export const ContactSection: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // 1. Post inquiry to local Next.js API route (/api/contact)
+      // 1. Post to internal API route
       await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
-      // 2. Post to Formspree endpoint as email delivery backup to giftmukhwana@gmail.com
-      fetch("https://formspree.io/f/giftmukhwana@gmail.com", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      }).catch(() => {});
-
     } catch (err) {
       console.log("Inquiry submit notice:", err);
     } finally {
@@ -82,7 +74,25 @@ export const ContactSection: React.FC = () => {
     }
   };
 
-  // Helper to generate a pre-filled WhatsApp message URL with inquiry details
+  // Helper to generate a pre-filled mailto URL for direct email client opening
+  const getMailtoUrl = () => {
+    const subject = `New Project Inquiry from ${formData.name} (${formData.serviceNeeded})`;
+    const body = `Hi Gift,
+
+I would like to discuss a project with you:
+
+- Name: ${formData.name}
+- Email: ${formData.email}
+- Business / Organization: ${formData.organization || "N/A"}
+- Service Needed: ${formData.serviceNeeded}
+- Estimated Budget: ${formData.estimatedBudget}
+
+Project Overview & Requirements:
+${formData.message}`;
+    return `mailto:giftmukhwana@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  // Helper to generate a pre-filled WhatsApp message URL
   const getWhatsAppInquiryUrl = () => {
     const text = `Hi Gift, I submitted an inquiry on your website:
 - Name: ${formData.name}
@@ -208,7 +218,7 @@ export const ContactSection: React.FC = () => {
                 PROJECT INQUIRY FORM
               </h3>
               <p className="text-xs text-slate-500 font-light mb-6">
-                Fill out your details below. Inquiries are dispatched directly to Gift Mukhwana (<span className="font-semibold text-[#1C2B5E]">giftmukhwana@gmail.com</span>).
+                Fill out your details below to submit your project requirements to Gift Mukhwana (<span className="font-semibold text-[#1C2B5E]">giftmukhwana@gmail.com</span>).
               </p>
 
               {submitSuccess ? (
@@ -217,22 +227,34 @@ export const ContactSection: React.FC = () => {
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-xl font-bold text-white uppercase">INQUIRY SENT SUCCESSFULLY</h4>
+                    <h4 className="text-xl font-bold text-white uppercase">INQUIRY PREPARED & SENT</h4>
                     <p className="text-slate-300 text-xs leading-relaxed max-w-md mx-auto">
-                      Thank you, <span className="text-[#B8962E] font-semibold">{formData.name}</span>. Your project inquiry has been dispatched directly to <span className="text-[#B8962E] font-mono font-semibold">giftmukhwana@gmail.com</span>. Gift will review your requirements and reply to <span className="text-[#B8962E]">{formData.email}</span> shortly.
+                      Thank you, <span className="text-[#B8962E] font-semibold">{formData.name}</span>. Your inquiry has been logged.
                     </p>
                   </div>
 
-                  {/* Instant WhatsApp Copy Action */}
-                  <div className="pt-2 border-t border-slate-700/60 max-w-md mx-auto space-y-3">
-                    <span className="text-[11px] text-slate-400 font-mono block">
-                      Want an instant reply? Send this inquiry directly to WhatsApp as well:
+                  {/* Guaranteed Direct Delivery Buttons */}
+                  <div className="pt-3 border-t border-slate-700/60 max-w-md mx-auto space-y-3">
+                    <span className="text-[11px] text-slate-300 font-mono block">
+                      Send your inquiry via your preferred method for instant confirmation:
                     </span>
+
+                    {/* Direct Email Client Trigger (Mailto) */}
+                    <a
+                      href={getMailtoUrl()}
+                      className="w-full gold-btn py-3 px-4 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md cursor-pointer"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span>OPEN EMAIL APP TO SEND TO GIFTMUKHWANA@GMAIL.COM</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+
+                    {/* Instant WhatsApp Option */}
                     <a
                       href={getWhatsAppInquiryUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 px-4 rounded text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md"
+                      className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 px-4 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md cursor-pointer"
                     >
                       <MessageSquare className="w-4 h-4 fill-white" />
                       <span>SEND INQUIRY TO WHATSAPP NOW</span>
@@ -242,9 +264,9 @@ export const ContactSection: React.FC = () => {
                   <div className="pt-2">
                     <button
                       onClick={() => { setSubmitSuccess(false); setFormData(INITIAL_FORM); }}
-                      className="gold-outline-btn px-6 py-2.5 rounded text-xs font-semibold uppercase tracking-wider"
+                      className="text-xs text-slate-400 hover:text-[#B8962E] underline uppercase tracking-wider font-mono cursor-pointer"
                     >
-                      SEND ANOTHER MESSAGE
+                      Send another message
                     </button>
                   </div>
                 </div>
@@ -377,7 +399,7 @@ export const ContactSection: React.FC = () => {
                       placeholder="Describe your business, the problem you want to solve, or the features you need..."
                       maxLength={2000}
                       className={`w-full px-3.5 py-2.5 rounded border ${
-                        errors.message ? "border-red-500" : "border-[#E4E4DA]"
+                        errors.message ? "border-red-500" : "border-[#E4E2DA]"
                       } bg-white text-sm text-[#111827] focus:outline-none focus:border-[#B8962E] transition-colors resize-none`}
                     />
                     {errors.message && (
@@ -392,7 +414,7 @@ export const ContactSection: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#111E4A] hover:bg-[#1C2B5E] text-white py-3.5 px-6 rounded text-xs font-semibold uppercase tracking-widest flex items-center justify-center gap-2 border border-[#B8962E]/30 hover:border-[#B8962E] transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="w-full bg-[#111E4A] hover:bg-[#1C2B5E] text-white py-3.5 px-6 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 border border-[#B8962E]/30 hover:border-[#B8962E] transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <span>DISPATCHING INQUIRY...</span>

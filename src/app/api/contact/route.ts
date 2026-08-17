@@ -12,28 +12,27 @@ export async function POST(request: Request) {
       );
     }
 
-    // Direct Web3Forms submission to giftmukhwana@gmail.com
-    // Web3Forms accepts public email submission or WEB3FORMS_ACCESS_KEY from env
-    const accessKey = process.env.WEB3FORMS_ACCESS_KEY || "a2a3e9c6-1c4b-4a5f-9293-f111867fa231";
+    const accessKey = process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
-    const web3formsRes = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: accessKey,
-        name: name,
-        email: email,
-        subject: `New Project Inquiry from ${name} (${serviceNeeded})`,
-        from_name: `${name} via Gift Mukhwana Website`,
-        to_email: "giftmukhwana@gmail.com",
-        message: `
+    if (accessKey) {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name,
+          email,
+          subject: `New Project Inquiry from ${name} (${serviceNeeded})`,
+          from_name: `${name} via Gift Mukhwana Website`,
+          to_email: "giftmukhwana@gmail.com",
+          message: `
 NEW PROJECT INQUIRY DETAILS:
 ------------------------------------------
 Client Name: ${name}
-Email: ${email}
+Client Email: ${email}
 Business / Organization: ${organization || "N/A"}
 Service Requested: ${serviceNeeded}
 Estimated Budget: ${estimatedBudget}
@@ -41,23 +40,23 @@ Estimated Budget: ${estimatedBudget}
 Project Overview & Requirements:
 ${message}
 ------------------------------------------
-Sent from Gift Mukhwana Portfolio Website
-        `,
-      }),
-    });
+Sent from Gift Mukhwana Website
+          `,
+        }),
+      });
+      const data = await res.json();
+      return NextResponse.json({ success: true, dispatched: true, data });
+    }
 
-    const result = await web3formsRes.json();
-
+    // Fallback log
+    console.log("Client Project Inquiry Received:", { name, email, organization, serviceNeeded, estimatedBudget, message });
     return NextResponse.json({
       success: true,
-      message: "Inquiry dispatched to giftmukhwana@gmail.com",
-      data: result,
+      dispatched: false,
+      message: "Inquiry logged. Web3Forms key needed for direct inbox delivery.",
     });
   } catch (error) {
-    console.error("API contact error:", error);
-    return NextResponse.json({
-      success: true,
-      message: "Inquiry received.",
-    });
+    console.error("API contact submission error:", error);
+    return NextResponse.json({ success: true, message: "Inquiry received." });
   }
 }
