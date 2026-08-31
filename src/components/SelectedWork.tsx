@@ -110,9 +110,17 @@ export const SelectedWork: React.FC = () => {
           </p>
           <a
             href="#contact"
-            className="inline-block mt-2 text-sm font-semibold text-[#B8962E] hover:underline uppercase tracking-wider"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById("contact");
+              if (el) {
+                const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }
+            }}
+            className="inline-block mt-2 text-sm font-semibold text-[#B8962E] hover:underline uppercase tracking-wider cursor-pointer"
           >
-            DISCUSS YOUR CUSTOM PROJECT &rarr;
+            DISCUSS YOUR CUSTOM PROJECT WITH GIFT MUKHWANA &rarr;
           </a>
         </div>
 

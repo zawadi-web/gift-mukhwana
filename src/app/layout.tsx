@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { JsonLd } from "@/components/JsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,23 +16,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gift Mukhwana — Software Developer | Custom Business Systems & Web Applications",
+  metadataBase: new URL("https://giftmukhwana.co.ke"),
+  title: "Gift Mukhwana | Web Developer & Software Developer in Kenya",
   description:
-    "Gift Mukhwana is a Software Developer based in Chuka, Kenya. Specializing in custom business systems, web applications, payment integrations (Paystack & M-Pesa), and professional business websites.",
+    "Gift Mukhwana is a professional Web Developer and Software Developer based in Kenya. Specializing in custom websites, high-performance web applications, digital solutions, business systems, and payment integrations (Paystack & M-Pesa).",
   keywords: [
     "Gift Mukhwana",
-    "Software Developer Kenya",
-    "Software Developer Chuka",
-    "Custom Business Systems",
+    "Gift Mukhwana Kenya",
+    "Gift Mukhwana web developer",
+    "Gift Mukhwana software developer",
+    "Gift Mukhwana portfolio",
+    "Gift Mukhwana website",
     "Web Developer Kenya",
+    "Software Developer Kenya",
+    "Web Developer Chuka",
+    "websites",
+    "web applications",
+    "digital solutions",
+    "Custom Business Systems",
     "Payment Integration Kenya",
     "Paystack Integration",
     "M-Pesa Integration",
     "Next.js Developer Kenya",
     "Full-Stack Developer Kenya",
   ],
-  authors: [{ name: "Gift Mukhwana" }],
+  authors: [{ name: "Gift Mukhwana", url: "https://giftmukhwana.co.ke/" }],
   creator: "Gift Mukhwana",
+  alternates: {
+    canonical: "https://giftmukhwana.co.ke/",
+  },
   icons: {
     icon: [
       { url: "/logo.png", type: "image/png" },
@@ -40,25 +53,32 @@ export const metadata: Metadata = {
     shortcut: "/logo.png",
   },
   openGraph: {
-    title: "Gift Mukhwana — Software Developer",
+    title: "Gift Mukhwana | Web Developer & Software Developer in Kenya",
     description:
-      "I build digital solutions that help businesses work smarter. Custom business systems, web applications, and payment integrations.",
-    url: "https://gift-mukhwana.dev",
-    siteName: "Gift Mukhwana — Software Developer",
-    images: [{ url: "/logo.png", width: 800, height: 800, alt: "Gift Mukhwana Logo" }],
+      "Gift Mukhwana is a Web Developer & Software Developer in Kenya building custom websites, web applications, business systems, and payment integrations.",
+    url: "https://giftmukhwana.co.ke/",
+    siteName: "Gift Mukhwana — Web Developer & Software Developer",
+    images: [{ url: "/logo.png", width: 800, height: 800, alt: "Gift Mukhwana - Web & Software Developer in Kenya" }],
     locale: "en_KE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gift Mukhwana — Software Developer",
+    title: "Gift Mukhwana | Web Developer & Software Developer in Kenya",
     description:
-      "I build digital solutions that help businesses work smarter. Custom business systems, web applications, and payment integrations.",
+      "Gift Mukhwana is a Web Developer & Software Developer in Kenya building custom websites, web applications, business systems, and payment integrations.",
     images: ["/logo.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -72,6 +92,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
+      <head>
+        <JsonLd />
+      </head>
       <body
         className="min-h-full flex flex-col bg-[#111E4A] text-[#F7F6F2] selection:bg-[#B8962E] selection:text-white"
       >

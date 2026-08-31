@@ -77,23 +77,23 @@ export const About: React.FC = () => {
                 ABOUT THE DEVELOPER
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0C1A3A] uppercase tracking-tight">
-                MEET GIFT
+                ABOUT GIFT MUKHWANA
               </h2>
             </div>
 
-            {/* Exact Required Text & Narrative */}
+            {/* Narrative & Experience */}
             <div className="space-y-4 text-slate-700 text-base leading-relaxed font-light">
               <p className="text-lg text-[#0C1A3A] font-semibold">
-                I’m Gift Mukhwana, a software developer and Computer Science student based in Kenya.
+                I’m Gift Mukhwana, a web developer, software developer, and Computer Science student based in Kenya.
               </p>
               <p>
-                I started by learning how software works and gradually moved into building real digital products and solutions for businesses.
+                I started by learning how software works and gradually moved into building real digital products, custom business systems, web applications, and payment integrations (Paystack & M-Pesa) for modern businesses.
               </p>
               <p>
-                Today, I enjoy taking a real-world problem, understanding how a business operates, and turning that problem into software people can actually use.
+                Today, I enjoy taking a real-world problem, understanding how a business operates, and turning that problem into software people can actually use—leveraging modern technologies like Next.js, React, TypeScript, Node.js, Python, and PostgreSQL.
               </p>
               <p className="p-4 bg-white rounded-xl border-l-4 border-[#B8962E] text-[#0C1A3A] font-semibold shadow-sm border border-r-[#E4E2DA] border-t-[#E4E2DA] border-b-[#E4E2DA]">
-                My focus is not simply writing code. It is building useful solutions that create value.
+                My focus is not simply writing code. It is building useful digital solutions that create real business value.
               </p>
             </div>
 

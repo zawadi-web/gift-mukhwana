@@ -29,12 +29,12 @@ export const BrandCTA: React.FC = () => {
 
         {/* Headline */}
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase leading-tight max-w-3xl mx-auto">
-          HAVE A BUSINESS PROBLEM THAT SOFTWARE COULD SOLVE?
+          NEED A WEBSITE OR DIGITAL SOLUTION FOR YOUR BUSINESS?
         </h2>
 
         {/* Supporting text */}
         <p className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
-          Let&apos;s turn the idea into something practical, usable and ready for the real world.
+          Let&apos;s turn your business goals into a high-performance website, web application, or custom software system.
         </p>
 
         {/* Action buttons */}
@@ -43,7 +43,7 @@ export const BrandCTA: React.FC = () => {
             onClick={() => scrollToSection("contact")}
             className="gold-btn w-full sm:w-auto px-8 py-4 rounded font-semibold text-xs tracking-widest uppercase flex items-center justify-center space-x-2 cursor-pointer shadow-lg"
           >
-            <span>START A PROJECT</span>
+            <span>LET&apos;S WORK TOGETHER</span>
             <ArrowRight className="w-4 h-4" />
           </button>
 
@@ -51,7 +51,7 @@ export const BrandCTA: React.FC = () => {
             onClick={() => scrollToSection("work")}
             className="gold-outline-btn w-full sm:w-auto px-8 py-4 rounded font-semibold text-xs tracking-widest uppercase flex items-center justify-center space-x-2 cursor-pointer"
           >
-            <span>VIEW MY WORK</span>
+            <span>VIEW GIFT MUKHWANA&apos;S WORK</span>
           </button>
         </div>
 

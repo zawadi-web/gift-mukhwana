@@ -41,17 +41,19 @@ export const Hero: React.FC = () => {
               <span>{PERSONAL_INFO.availability}</span>
             </div>
 
-            {/* Main headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-[3.6rem] font-extrabold text-white tracking-tight leading-[1.12] uppercase">
-              I BUILD DIGITAL SOLUTIONS THAT HELP BUSINESSES{" "}
-              <span className="text-[#B8962E] underline decoration-[#B8962E]/40 underline-offset-8">
-                WORK SMARTER.
+            {/* Introductory Greeting & Main Heading */}
+            <div className="space-y-3">
+              <span className="inline-block text-[#B8962E] text-sm sm:text-base font-mono font-bold tracking-widest uppercase">
+                HI, I&apos;M GIFT MUKHWANA
               </span>
-            </h1>
+              <h1 className="text-3xl sm:text-5xl lg:text-[3.6rem] font-extrabold text-white tracking-tight leading-[1.12] uppercase">
+                WEB DEVELOPER &amp; SOFTWARE DEVELOPER IN KENYA
+              </h1>
+            </div>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-light">
-              {PERSONAL_INFO.heroSubtitle}
+              I build custom websites, web applications, business systems, and payment integrations that help businesses work smarter.
             </p>
 
             {/* CTAs */}
