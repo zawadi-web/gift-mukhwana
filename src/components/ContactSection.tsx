@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
-import { Mail, MapPin, Send, CheckCircle2, AlertCircle, MessageSquare, Clock, ExternalLink } from "lucide-react";
+import { Mail, Globe2, Send, CheckCircle2, AlertCircle, MessageSquare, Clock, ExternalLink, Terminal, Radio } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
@@ -22,14 +22,14 @@ const INITIAL_FORM: FormData = {
   name: "",
   email: "",
   organization: "",
-  serviceNeeded: "Business Website",
-  estimatedBudget: "Flexible / Not sure yet",
+  serviceNeeded: "Full-Stack Web Application",
+  estimatedBudget: "Flexible / To Be Discussed",
   message: "",
 };
 
 export const ContactSection: React.FC = () => {
-  const [formData, setFormData]       = useState<FormData>(INITIAL_FORM);
-  const [errors, setErrors]           = useState<Partial<FormData>>({});
+  const [formData, setFormData]         = useState<FormData>(INITIAL_FORM);
+  const [errors, setErrors]             = useState<Partial<FormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
@@ -49,7 +49,7 @@ export const ContactSection: React.FC = () => {
     if (!formData.email.trim())   newErrors.email   = "Please enter your email address.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
                                   newErrors.email   = "Please enter a valid email address.";
-    if (!formData.message.trim()) newErrors.message = "Please describe your project or question.";
+    if (!formData.message.trim()) newErrors.message = "Please describe your project or system requirements.";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -79,7 +79,7 @@ export const ContactSection: React.FC = () => {
     const subject = `New Project Inquiry from ${formData.name} (${formData.serviceNeeded})`;
     const body = `Hi Gift,
 
-I would like to discuss a project with you:
+I would like to discuss a software project with you:
 
 - Name: ${formData.name}
 - Email: ${formData.email}
@@ -94,114 +94,127 @@ ${formData.message}`;
 
   // Helper to generate a pre-filled WhatsApp message URL
   const getWhatsAppInquiryUrl = () => {
-    const text = `Hi Gift, I submitted an inquiry on your website:
+    const text = `Hi Gift, I submitted an inquiry on your portfolio website:
 - Name: ${formData.name}
 - Email: ${formData.email}
-- Business: ${formData.organization || "N/A"}
-- Service: ${formData.serviceNeeded}
+- Organization: ${formData.organization || "N/A"}
+- Service Needed: ${formData.serviceNeeded}
 - Budget: ${formData.estimatedBudget}
-- Overview: ${formData.message}`;
+
+Message:
+${formData.message}`;
     return `https://wa.me/254769047490?text=${encodeURIComponent(text)}`;
   };
 
   return (
-    <section id="contact" className="bg-[#FFFFFF] py-20 md:py-28 text-[#111827] border-b border-[#E4E2DA]">
+    <section id="contact" className="bg-[#0A0F1D] py-24 md:py-32 text-slate-100 border-b border-[#D4A838]/20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Section header */}
-        <div className="text-left mb-14 space-y-3 pb-6 border-b border-[#E4E2DA]">
-          <span className="text-xs font-mono font-bold tracking-widest text-[#B8962E] uppercase">
-            PROJECT INQUIRIES
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1C2B5E] uppercase tracking-tight">
-            LET&apos;S BUILD SOMETHING.
+        {/* ── Scene Header ── */}
+        <div className="text-left mb-16 space-y-3 pb-6 border-b border-slate-800">
+          <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#ECC45F] uppercase">
+            <Radio className="w-4 h-4 text-[#D4A838] animate-pulse" />
+            <span>SCENE 06 // TRANSMISSION &amp; INQUIRY</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+            INITIATE COLLABORATION
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl font-light">
-            Have an idea, project, or business problem you want to solve? Send a message below or connect directly.
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-light">
+            Available for remote contracts, full-stack builds, and bespoke software projects. Send your specifications directly to Gift Mukhwana.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-          {/* ── Left: Direct Communication & Details ── */}
+          {/* ── Left Column: Direct Contact Telemetry ── */}
           <div className="lg:col-span-5 space-y-6">
 
-            {/* Direct WhatsApp Action Box */}
-            <div className="bg-[#111E4A] text-white p-6 rounded-xl border border-[#B8962E]/30 shadow-md space-y-4">
-              <div className="flex items-center space-x-3">
-                <div className="p-3 bg-[#25D366]/20 text-[#25D366] rounded-xl border border-[#25D366]/30">
-                  <MessageSquare className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-bold uppercase text-white text-sm tracking-wide">
-                    INSTANT WHATSAPP CONNECT
-                  </h3>
-                  <span className="text-[11px] text-slate-300 font-mono flex items-center mt-0.5">
-                    <Clock className="w-3 h-3 text-[#B8962E] mr-1" /> Typically responds within hours
-                  </span>
-                </div>
+            {/* Availability Box */}
+            <div className="viewfinder-bracket bg-[#11182B] p-6 rounded-xl border border-slate-800 space-y-4 shadow-xl">
+              <div className="flex items-center space-x-2 text-xs font-mono text-[#ECC45F] uppercase tracking-wider">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>COMMUNICATION STATUS // ACTIVE</span>
               </div>
-
-              <p className="text-xs text-slate-300 leading-relaxed font-light">
-                Need to discuss your project requirements immediately? Tap below to open a direct WhatsApp chat.
+              <h3 className="text-xl font-bold text-white uppercase tracking-tight">
+                LET&apos;S DISCUSS YOUR PROJECT
+              </h3>
+              <p className="text-slate-300 text-xs leading-relaxed font-light">
+                Whether you need a full-stack platform, custom business system, or technical consultation, I respond promptly with architectural insights and clear milestones.
               </p>
+              <div className="pt-2 flex items-center space-x-2 text-[11px] font-mono text-slate-400">
+                <Clock className="w-3.5 h-3.5 text-[#ECC45F]" />
+                <span>Typical response window: Under 24 hours</span>
+              </div>
+            </div>
 
+            {/* Instant WhatsApp Priority Route */}
+            <div className="bg-[#11182B] p-6 rounded-xl border border-emerald-500/30 space-y-3 shadow-xl">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest font-bold">
+                  FAST TRANSMISSION CHANNEL
+                </span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              </div>
+              <h4 className="text-sm font-bold text-white uppercase">DIRECT WHATSAPP INQUIRY</h4>
+              <p className="text-xs text-slate-300 font-light">
+                Prefer immediate messaging? Open an encrypted chat directly with Gift Mukhwana:
+              </p>
               <a
                 href={PERSONAL_INFO.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3.5 px-4 rounded-lg text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md cursor-pointer"
+                className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-mono font-bold py-3.5 px-4 rounded-lg text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4 fill-white" />
-                <span>START WHATSAPP CONVERSATION</span>
+                <span>OPEN WHATSAPP CHAT</span>
               </a>
             </div>
 
             {/* Direct Contact Detail List */}
-            <div className="bg-[#F7F6F2] p-6 rounded-xl border border-[#E4E2DA] space-y-5 shadow-xs">
-              <h3 className="text-sm font-mono font-bold text-[#1C2B5E] uppercase tracking-wider pb-3 border-b border-[#E4E2DA]">
-                DIRECT CONTACT DETAILS
+            <div className="viewfinder-bracket bg-[#11182B] p-6 rounded-xl border border-slate-800 space-y-4 shadow-xl">
+              <h3 className="text-xs font-mono font-bold text-[#ECC45F] uppercase tracking-widest pb-3 border-b border-slate-800">
+                DIRECT CHANNELS &amp; REPOSITORY
               </h3>
 
               {/* Email */}
               <div className="flex items-start space-x-3">
-                <div className="p-2 rounded bg-white text-[#B8962E] border border-[#E4E2DA]">
+                <div className="p-2 rounded bg-[#06090E] text-[#ECC45F] border border-slate-800">
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono text-slate-500 uppercase block">Email Address</span>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase block">Email Transmission</span>
                   <a
                     href={`mailto:${PERSONAL_INFO.email}`}
-                    className="text-sm font-semibold text-[#1C2B5E] hover:text-[#B8962E] transition-colors break-all"
+                    className="text-sm font-semibold text-white hover:text-[#ECC45F] transition-colors break-all font-mono"
                   >
                     {PERSONAL_INFO.email}
                   </a>
                 </div>
               </div>
 
-              {/* Location */}
+              {/* Location & Remote Availability */}
               <div className="flex items-start space-x-3">
-                <div className="p-2 rounded bg-white text-[#B8962E] border border-[#E4E2DA]">
-                  <MapPin className="w-4 h-4" />
+                <div className="p-2 rounded bg-[#06090E] text-[#ECC45F] border border-slate-800">
+                  <Globe2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono text-slate-500 uppercase block">Location</span>
-                  <span className="text-sm font-medium text-[#1C2B5E]">{PERSONAL_INFO.location}</span>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase block">Location Independence</span>
+                  <span className="text-sm font-medium text-slate-200">{PERSONAL_INFO.location}</span>
                 </div>
               </div>
 
               {/* GitHub */}
               <div className="flex items-start space-x-3">
-                <div className="p-2 rounded bg-white text-[#B8962E] border border-[#E4E2DA]">
+                <div className="p-2 rounded bg-[#06090E] text-[#ECC45F] border border-slate-800">
                   <GithubIcon className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-mono text-slate-500 uppercase block">GitHub Profile</span>
+                  <span className="text-[10px] font-mono text-slate-400 uppercase block">Code Verification</span>
                   <a
                     href={PERSONAL_INFO.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-[#1C2B5E] hover:text-[#B8962E] transition-colors"
+                    className="text-sm font-semibold text-white hover:text-[#ECC45F] transition-colors font-mono"
                   >
                     {PERSONAL_INFO.github}
                   </a>
@@ -211,41 +224,41 @@ ${formData.message}`;
 
           </div>
 
-          {/* ── Right: Project Inquiry Form ── */}
+          {/* ── Right Column: Project Inquiry Form ── */}
           <div className="lg:col-span-7">
-            <div className="bg-[#F7F6F2] p-6 sm:p-8 rounded-xl border border-[#E4E2DA] shadow-sm">
-              <h3 className="text-xl font-bold text-[#1C2B5E] uppercase tracking-tight mb-2">
-                PROJECT INQUIRY FORM
+            <div className="viewfinder-bracket bg-[#11182B] p-6 sm:p-8 rounded-xl border border-slate-800 shadow-2xl">
+              <h3 className="text-xl font-black text-white uppercase tracking-tight mb-2">
+                PROJECT INQUIRY SPECIFICATION
               </h3>
-              <p className="text-xs text-slate-500 font-light mb-6">
-                Fill out your details below to submit your project requirements to Gift Mukhwana (<span className="font-semibold text-[#1C2B5E]">giftmukhwana@gmail.com</span>).
+              <p className="text-xs text-slate-400 font-light mb-6">
+                Submit your project requirements directly to Gift Mukhwana (<span className="font-semibold text-[#ECC45F] font-mono">giftmukhwana@gmail.com</span>).
               </p>
 
               {submitSuccess ? (
-                <div className="bg-[#111E4A] text-white p-8 rounded-xl border border-[#B8962E]/40 text-center space-y-5 animate-fadeIn">
+                <div className="bg-[#06090E] text-white p-8 rounded-xl border border-[#D4A838]/40 text-center space-y-5 animate-fadeIn">
                   <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-xl font-bold text-white uppercase">INQUIRY PREPARED & SENT</h4>
+                    <h4 className="text-xl font-black text-white uppercase tracking-wider">INQUIRY PREPARED &amp; LOGGED</h4>
                     <p className="text-slate-300 text-xs leading-relaxed max-w-md mx-auto">
-                      Thank you, <span className="text-[#B8962E] font-semibold">{formData.name}</span>. Your inquiry has been logged.
+                      Thank you, <span className="text-[#ECC45F] font-semibold">{formData.name}</span>. Your project parameters have been received.
                     </p>
                   </div>
 
-                  {/* Guaranteed Direct Delivery Buttons */}
-                  <div className="pt-3 border-t border-slate-700/60 max-w-md mx-auto space-y-3">
-                    <span className="text-[11px] text-slate-300 font-mono block">
-                      Send your inquiry via your preferred method for instant confirmation:
+                  {/* Guaranteed Direct Delivery Triggers */}
+                  <div className="pt-4 border-t border-slate-800 max-w-md mx-auto space-y-3">
+                    <span className="text-[11px] text-slate-400 font-mono block">
+                      Choose an instant verification route:
                     </span>
 
-                    {/* Direct Email Client Trigger (Mailto) */}
+                    {/* Direct Email Client Trigger */}
                     <a
                       href={getMailtoUrl()}
-                      className="w-full gold-btn py-3 px-4 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md cursor-pointer"
+                      className="w-full gold-btn py-3 px-4 rounded-lg text-xs font-mono font-bold uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md cursor-pointer"
                     >
                       <Mail className="w-4 h-4" />
-                      <span>OPEN EMAIL APP TO SEND TO GIFTMUKHWANA@GMAIL.COM</span>
+                      <span>OPEN EMAIL APP TO SEND NOW</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
 
@@ -254,174 +267,148 @@ ${formData.message}`;
                       href={getWhatsAppInquiryUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 px-4 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md cursor-pointer"
+                      className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 px-4 rounded-lg text-xs font-mono font-bold uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md cursor-pointer"
                     >
                       <MessageSquare className="w-4 h-4 fill-white" />
-                      <span>SEND INQUIRY TO WHATSAPP NOW</span>
+                      <span>SEND SPECIFICATIONS VIA WHATSAPP</span>
                     </a>
-                  </div>
-
-                  <div className="pt-2">
-                    <button
-                      onClick={() => { setSubmitSuccess(false); setFormData(INITIAL_FORM); }}
-                      className="text-xs text-slate-400 hover:text-[#B8962E] underline uppercase tracking-wider font-mono cursor-pointer"
-                    >
-                      Send another message
-                    </button>
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                <form onSubmit={handleSubmit} className="space-y-4 font-mono">
+                  {/* Name */}
+                  <div>
+                    <label htmlFor="name" className="block text-xs uppercase tracking-wider text-slate-300 mb-1">
+                      Your Full Name <span className="text-[#ECC45F]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="e.g. Sarah Jenkins"
+                      className="w-full bg-[#06090E] border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ECC45F] transition-colors"
+                    />
+                    {errors.name && (
+                      <p className="mt-1 text-xs text-red-400 flex items-center gap-1 font-sans">
+                        <AlertCircle className="w-3.5 h-3.5" /> {errors.name}
+                      </p>
+                    )}
+                  </div>
 
+                  {/* Email & Organization */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Name */}
                     <div>
-                      <label htmlFor="contact-name" className="block text-xs font-mono font-semibold text-[#1C2B5E] uppercase mb-1">
-                        Your Name *
+                      <label htmlFor="email" className="block text-xs uppercase tracking-wider text-slate-300 mb-1">
+                        Email Address <span className="text-[#ECC45F]">*</span>
                       </label>
                       <input
-                        id="contact-name"
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        autoComplete="name"
-                        placeholder="e.g. John Mwangi"
-                        maxLength={120}
-                        className={`w-full px-3.5 py-2.5 rounded border ${
-                          errors.name ? "border-red-500" : "border-[#E4E2DA]"
-                        } bg-white text-sm text-[#111827] focus:outline-none focus:border-[#B8962E] transition-colors`}
-                      />
-                      {errors.name && (
-                        <span className="text-[11px] text-red-600 flex items-center mt-1">
-                          <AlertCircle className="w-3 h-3 mr-1" /> {errors.name}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label htmlFor="contact-email" className="block text-xs font-mono font-semibold text-[#1C2B5E] uppercase mb-1">
-                        Email Address *
-                      </label>
-                      <input
-                        id="contact-email"
                         type="email"
+                        id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        autoComplete="email"
-                        placeholder="e.g. john@business.co.ke"
-                        maxLength={254}
-                        className={`w-full px-3.5 py-2.5 rounded border ${
-                          errors.email ? "border-red-500" : "border-[#E4E2DA]"
-                        } bg-white text-sm text-[#111827] focus:outline-none focus:border-[#B8962E] transition-colors`}
+                        placeholder="you@organization.com"
+                        className="w-full bg-[#06090E] border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ECC45F] transition-colors"
                       />
                       {errors.email && (
-                        <span className="text-[11px] text-red-600 flex items-center mt-1">
-                          <AlertCircle className="w-3 h-3 mr-1" /> {errors.email}
-                        </span>
+                        <p className="mt-1 text-xs text-red-400 flex items-center gap-1 font-sans">
+                          <AlertCircle className="w-3.5 h-3.5" /> {errors.email}
+                        </p>
                       )}
                     </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {/* Organization */}
                     <div>
-                      <label htmlFor="contact-org" className="block text-xs font-mono font-semibold text-[#1C2B5E] uppercase mb-1">
-                        Business / Organization
+                      <label htmlFor="organization" className="block text-xs uppercase tracking-wider text-slate-300 mb-1">
+                        Organization / Business
                       </label>
                       <input
-                        id="contact-org"
                         type="text"
+                        id="organization"
                         name="organization"
                         value={formData.organization}
                         onChange={handleChange}
-                        autoComplete="organization"
-                        placeholder="Company or Brand Name"
-                        maxLength={120}
-                        className="w-full px-3.5 py-2.5 rounded border border-[#E4E2DA] bg-white text-sm text-[#111827] focus:outline-none focus:border-[#B8962E] transition-colors"
+                        placeholder="Company or venture name"
+                        className="w-full bg-[#06090E] border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ECC45F] transition-colors"
                       />
                     </div>
+                  </div>
 
-                    {/* Service */}
+                  {/* Service Needed & Budget */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="contact-service" className="block text-xs font-mono font-semibold text-[#1C2B5E] uppercase mb-1">
-                        What Do You Need?
+                      <label htmlFor="serviceNeeded" className="block text-xs uppercase tracking-wider text-slate-300 mb-1">
+                        Service Category
                       </label>
                       <select
-                        id="contact-service"
+                        id="serviceNeeded"
                         name="serviceNeeded"
                         value={formData.serviceNeeded}
                         onChange={handleChange}
-                        className="w-full px-3.5 py-2.5 rounded border border-[#E4E2DA] bg-white text-sm text-[#111827] focus:outline-none focus:border-[#B8962E] transition-colors"
+                        className="w-full bg-[#06090E] border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ECC45F] transition-colors"
                       >
-                        <option value="Business Website">01 — Business Website</option>
-                        <option value="Custom Business System">02 — Custom Business System</option>
-                        <option value="Payment Integration">03 — Payment Integration (Paystack / M-Pesa)</option>
-                        <option value="Web Application">04 — Web Application</option>
-                        <option value="Hosting & Maintenance">05 — Hosting & Maintenance</option>
-                        <option value="Other Custom Solution">06 — Other Custom Solution</option>
+                        <option value="Full-Stack Web Application">Full-Stack Web Application</option>
+                        <option value="Custom Business System">Custom Business System</option>
+                        <option value="Payment Gateway Integration">Payment Gateway Integration</option>
+                        <option value="Corporate / Brand Website">Corporate / Brand Website</option>
+                        <option value="System Architecture / Audit">System Architecture / Audit</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="estimatedBudget" className="block text-xs uppercase tracking-wider text-slate-300 mb-1">
+                        Budget Scope
+                      </label>
+                      <select
+                        id="estimatedBudget"
+                        name="estimatedBudget"
+                        value={formData.estimatedBudget}
+                        onChange={handleChange}
+                        className="w-full bg-[#06090E] border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ECC45F] transition-colors"
+                      >
+                        <option value="Flexible / To Be Discussed">Flexible / To Be Discussed</option>
+                        <option value="Standard Production Build">Standard Production Build</option>
+                        <option value="Enterprise / Comprehensive System">Enterprise / Comprehensive System</option>
+                        <option value="Long-term Retainer / Ongoing">Long-term Retainer / Ongoing</option>
                       </select>
                     </div>
                   </div>
 
-                  {/* Budget */}
-                  <div>
-                    <label htmlFor="contact-budget" className="block text-xs font-mono font-semibold text-[#1C2B5E] uppercase mb-1">
-                      Estimated Budget Range
-                    </label>
-                    <select
-                      id="contact-budget"
-                      name="estimatedBudget"
-                      value={formData.estimatedBudget}
-                      onChange={handleChange}
-                      className="w-full px-3.5 py-2.5 rounded border border-[#E4E2DA] bg-white text-sm text-[#111827] focus:outline-none focus:border-[#B8962E] transition-colors"
-                    >
-                      <option value="Flexible / Not sure yet">Flexible / Not sure yet</option>
-                      <option value="KSh 20,000 - KSh 50,000">KSh 20,000 - KSh 50,000</option>
-                      <option value="KSh 50,000 - KSh 120,000">KSh 50,000 - KSh 120,000</option>
-                      <option value="KSh 120,000+">KSh 120,000+</option>
-                    </select>
-                  </div>
-
                   {/* Message */}
                   <div>
-                    <label htmlFor="contact-message" className="block text-xs font-mono font-semibold text-[#1C2B5E] uppercase mb-1">
-                      Project Overview & Requirements *
+                    <label htmlFor="message" className="block text-xs uppercase tracking-wider text-slate-300 mb-1">
+                      Project Description &amp; Objectives <span className="text-[#ECC45F]">*</span>
                     </label>
                     <textarea
-                      id="contact-message"
+                      id="message"
                       name="message"
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Describe your business, the problem you want to solve, or the features you need..."
-                      maxLength={2000}
-                      className={`w-full px-3.5 py-2.5 rounded border ${
-                        errors.message ? "border-red-500" : "border-[#E4E2DA]"
-                      } bg-white text-sm text-[#111827] focus:outline-none focus:border-[#B8962E] transition-colors resize-none`}
+                      placeholder="Outline what problem you need solved, your desired timeline, and any key feature requirements..."
+                      className="w-full bg-[#06090E] border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ECC45F] transition-colors"
                     />
                     {errors.message && (
-                      <span className="text-[11px] text-red-600 flex items-center mt-1">
-                        <AlertCircle className="w-3 h-3 mr-1" /> {errors.message}
-                      </span>
+                      <p className="mt-1 text-xs text-red-400 flex items-center gap-1 font-sans">
+                        <AlertCircle className="w-3.5 h-3.5" /> {errors.message}
+                      </p>
                     )}
                   </div>
 
-                  {/* Submit */}
+                  {/* Submit Button */}
                   <div className="pt-2">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#111E4A] hover:bg-[#1C2B5E] text-white py-3.5 px-6 rounded-lg text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 border border-[#B8962E]/30 hover:border-[#B8962E] transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                      className="gold-btn w-full py-4 rounded-lg font-mono font-bold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 cursor-pointer shadow-lg disabled:opacity-50"
                     >
                       {isSubmitting ? (
-                        <span>DISPATCHING INQUIRY...</span>
+                        <span>TRANSMITTING INQUIRY...</span>
                       ) : (
                         <>
-                          <span>SEND PROJECT INQUIRY</span>
-                          <Send className="w-4 h-4 text-[#B8962E]" />
+                          <span>SUBMIT PROJECT SPECIFICATION</span>
+                          <Send className="w-4 h-4" />
                         </>
                       )}
                     </button>
@@ -430,7 +417,9 @@ ${formData.message}`;
               )}
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
   );

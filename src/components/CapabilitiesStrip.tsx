@@ -1,47 +1,55 @@
 "use client";
 
 import React from "react";
-import { Globe, LayoutDashboard, CreditCard, Code2, Server } from "lucide-react";
+import { Globe, LayoutDashboard, CreditCard, Code2, Server, Film, Cpu } from "lucide-react";
 import { CAPABILITIES } from "@/data/portfolioData";
 
 export const CapabilitiesStrip: React.FC = () => {
   const getIcon = (key: string) => {
     switch (key) {
       case "web-dev":
-        return <Globe className="w-4 h-4 text-[#B8962E]" />;
+        return <Globe className="w-4 h-4 text-[#ECC45F]" />;
       case "systems":
-        return <LayoutDashboard className="w-4 h-4 text-[#B8962E]" />;
+        return <LayoutDashboard className="w-4 h-4 text-[#ECC45F]" />;
       case "payments":
-        return <CreditCard className="w-4 h-4 text-[#B8962E]" />;
+        return <CreditCard className="w-4 h-4 text-[#ECC45F]" />;
       case "web-apps":
-        return <Code2 className="w-4 h-4 text-[#B8962E]" />;
+        return <Code2 className="w-4 h-4 text-[#ECC45F]" />;
       case "hosting":
-        return <Server className="w-4 h-4 text-[#B8962E]" />;
+        return <Server className="w-4 h-4 text-[#ECC45F]" />;
       default:
-        return <Globe className="w-4 h-4 text-[#B8962E]" />;
+        return <Cpu className="w-4 h-4 text-[#ECC45F]" />;
     }
   };
 
   return (
-    <div className="bg-[#0E1A3D] border-y border-[#B8962E]/20 py-6 overflow-x-auto">
+    <div className="bg-[#0A0F1D] border-y border-[#D4A838]/20 py-4 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between min-w-max space-x-6 lg:space-x-12">
+        <div className="flex items-center justify-between overflow-x-auto no-scrollbar gap-6 lg:gap-8 py-1">
           {CAPABILITIES.map((item, idx) => (
             <div
               key={item.key}
-              className="flex items-center space-x-3 group text-slate-300 hover:text-white transition-colors"
+              className="flex items-center gap-3 shrink-0 group text-slate-300 hover:text-white transition-colors"
             >
-              <div className="p-2 rounded-lg bg-[#1C2B5E] border border-[#B8962E]/20 group-hover:border-[#B8962E] transition-colors">
+              <div className="p-2 rounded bg-[#11182B] border border-[#D4A838]/25 group-hover:border-[#ECC45F] transition-colors">
                 {getIcon(item.key)}
               </div>
-              <span className="text-xs font-mono font-semibold tracking-wider uppercase text-slate-200 group-hover:text-[#B8962E] transition-colors">
+              <span className="text-xs font-mono font-semibold tracking-widest uppercase text-slate-200 group-hover:text-[#ECC45F] transition-colors">
                 {item.name}
               </span>
               {idx < CAPABILITIES.length - 1 && (
-                <span className="text-slate-700 ml-4 hidden lg:inline-block">/</span>
+                <span className="text-slate-700 ml-6 hidden lg:inline-block font-mono">
+                  //
+                </span>
               )}
             </div>
           ))}
+
+          {/* Location-independent badge */}
+          <div className="hidden xl:flex items-center gap-2 pl-4 border-l border-slate-800 shrink-0 text-[11px] font-mono text-[#ECC45F]">
+            <Film className="w-3.5 h-3.5" />
+            <span className="tracking-wider uppercase">GLOBAL REMOTE DELIVERY</span>
+          </div>
         </div>
       </div>
     </div>

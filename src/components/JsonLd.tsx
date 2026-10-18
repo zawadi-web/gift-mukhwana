@@ -10,20 +10,14 @@ export const JsonLd: React.FC = () => {
     "familyName": "Mukhwana",
     "url": "https://giftmukhwana.co.ke/",
     "image": "https://giftmukhwana.co.ke/logo.png",
-    "jobTitle": "Web Developer & Software Developer",
-    "description": "Gift Mukhwana is a Web Developer & Software Developer based in Kenya, specializing in custom business systems, web applications, websites, and payment integrations.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Chuka",
-      "addressRegion": "Tharaka-Nithi County",
-      "addressCountry": "KE"
-    },
+    "jobTitle": "Software Developer & Systems Builder",
+    "description": "Gift Mukhwana is a mobile, location-independent Software Developer specializing in custom business systems, full-stack web applications, and seamless payment integrations.",
     "sameAs": [
       "https://github.com/zawadi-web"
     ],
     "knowsAbout": [
-      "Web Development",
       "Software Development",
+      "Full-Stack Web Development",
       "Next.js",
       "React",
       "TypeScript",
@@ -31,9 +25,11 @@ export const JsonLd: React.FC = () => {
       "Node.js",
       "Python",
       "Paystack Payment Integration",
-      "M-Pesa Integration",
+      "M-Pesa / Daraja Integration",
       "PostgreSQL",
-      "Prisma"
+      "Prisma ORM",
+      "RESTful API Architecture",
+      "Cloud Deployment"
     ]
   };
 
@@ -42,8 +38,8 @@ export const JsonLd: React.FC = () => {
     "@type": "WebSite",
     "@id": "https://giftmukhwana.co.ke/#website",
     "url": "https://giftmukhwana.co.ke/",
-    "name": "Gift Mukhwana | Web Developer & Software Developer in Kenya",
-    "description": "Portfolio website of Gift Mukhwana, a Web Developer & Software Developer in Kenya.",
+    "name": "Gift Mukhwana | Software Developer & Systems Builder",
+    "description": "Portfolio website of Gift Mukhwana, a mobile, location-independent Software Developer and Systems Builder.",
     "publisher": {
       "@id": "https://giftmukhwana.co.ke/#person"
     }
@@ -54,8 +50,8 @@ export const JsonLd: React.FC = () => {
     "@type": "WebPage",
     "@id": "https://giftmukhwana.co.ke/#webpage",
     "url": "https://giftmukhwana.co.ke/",
-    "name": "Gift Mukhwana | Web Developer & Software Developer in Kenya",
-    "description": "Official website and portfolio of Gift Mukhwana, a Web Developer & Software Developer in Kenya.",
+    "name": "Gift Mukhwana | Software Developer & Systems Builder",
+    "description": "Official portfolio of Gift Mukhwana, Software Developer building custom business systems, full-stack web applications, and payment integrations.",
     "isPartOf": {
       "@id": "https://giftmukhwana.co.ke/#website"
     },

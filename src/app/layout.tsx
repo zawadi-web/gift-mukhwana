@@ -17,28 +17,25 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://giftmukhwana.co.ke"),
-  title: "Gift Mukhwana | Web Developer & Software Developer in Kenya",
+  title: "Gift Mukhwana | Software Developer & Systems Builder",
   description:
-    "Gift Mukhwana is a professional Web Developer and Software Developer based in Kenya. Specializing in custom websites, high-performance web applications, digital solutions, business systems, and payment integrations (Paystack & M-Pesa).",
+    "Gift Mukhwana is a mobile, location-independent Software Developer specializing in high-impact custom business systems, full-stack web applications, and frictionless payment integrations. Available for remote collaboration worldwide.",
   keywords: [
     "Gift Mukhwana",
-    "Gift Mukhwana Kenya",
-    "Gift Mukhwana web developer",
-    "Gift Mukhwana software developer",
+    "Software Developer",
+    "Full-Stack Developer",
+    "Remote Software Developer",
+    "Systems Architect",
     "Gift Mukhwana portfolio",
-    "Gift Mukhwana website",
-    "Web Developer Kenya",
-    "Software Developer Kenya",
-    "Web Developer Chuka",
-    "websites",
-    "web applications",
-    "digital solutions",
     "Custom Business Systems",
-    "Payment Integration Kenya",
+    "Web Applications",
+    "Next.js Developer",
+    "TypeScript Developer",
+    "Payment Integrations",
     "Paystack Integration",
-    "M-Pesa Integration",
-    "Next.js Developer Kenya",
-    "Full-Stack Developer Kenya",
+    "M-Pesa API",
+    "PostgreSQL",
+    "Prisma ORM",
   ],
   authors: [{ name: "Gift Mukhwana", url: "https://giftmukhwana.co.ke/" }],
   creator: "Gift Mukhwana",
@@ -53,20 +50,20 @@ export const metadata: Metadata = {
     shortcut: "/logo.png",
   },
   openGraph: {
-    title: "Gift Mukhwana | Web Developer & Software Developer in Kenya",
+    title: "Gift Mukhwana | Software Developer & Systems Builder",
     description:
-      "Gift Mukhwana is a Web Developer & Software Developer in Kenya building custom websites, web applications, business systems, and payment integrations.",
+      "Gift Mukhwana is a mobile, location-independent Software Developer building resilient custom business systems, full-stack web applications, and payment integrations. Available for remote collaboration worldwide.",
     url: "https://giftmukhwana.co.ke/",
-    siteName: "Gift Mukhwana — Web Developer & Software Developer",
-    images: [{ url: "/logo.png", width: 800, height: 800, alt: "Gift Mukhwana - Web & Software Developer in Kenya" }],
-    locale: "en_KE",
+    siteName: "Gift Mukhwana — Software Studio",
+    images: [{ url: "/logo.png", width: 800, height: 800, alt: "Gift Mukhwana - Software Developer" }],
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gift Mukhwana | Web Developer & Software Developer in Kenya",
+    title: "Gift Mukhwana | Software Developer & Systems Builder",
     description:
-      "Gift Mukhwana is a Web Developer & Software Developer in Kenya building custom websites, web applications, business systems, and payment integrations.",
+      "Gift Mukhwana is a location-independent Software Developer building resilient custom business systems, full-stack web applications, and payment integrations.",
     images: ["/logo.png"],
   },
   robots: {
@@ -99,8 +96,10 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body
-        className="min-h-full flex flex-col bg-[#111E4A] text-[#F7F6F2] selection:bg-[#B8962E] selection:text-white"
+        className="min-h-full flex flex-col bg-[#06090E] text-[#F8FAFC] selection:bg-[#D4A838] selection:text-[#06090E]"
       >
+        {/* Subtle cinematic celluloid grain texture */}
+        <div className="film-grain" aria-hidden="true" />
         {children}
       </body>
     </html>

@@ -2,12 +2,15 @@ export interface Project {
   id: string;
   name: string;
   category: string;
+  logline?: string;
   description: string;
   technologies: string[];
   features?: string[];
   url?: string;
   githubUrl?: string;
   isPlaceholder?: boolean;
+  reelNumber?: string;
+  architectureScope?: string;
 }
 
 export interface Service {
@@ -24,6 +27,7 @@ export interface ProcessStep {
   title: string;
   description: string;
   deliverables: string;
+  phaseCode?: string;
 }
 
 export interface TechCategory {
@@ -34,18 +38,19 @@ export interface TechCategory {
 export const PERSONAL_INFO = {
   name: "Gift Mukhwana",
   title: "Software Developer",
-  tagline: "I build digital solutions that help businesses work smarter.",
-  location: "Chuka, Tharaka-Nithi County, Kenya",
-  locationShort: "Chuka, Kenya",
+  roleTitle: "Software Developer & Systems Builder",
+  tagline: "Engineering high-impact digital systems, web applications, and scalable business software that travel anywhere.",
+  location: "Location-Independent · Remote Collaboration Worldwide",
+  locationShort: "Location-Independent",
   phone: "0769047490",
   phoneFormatted: "+254 769 047 490",
   email: "giftmukhwana@gmail.com",
   github: "github.com/zawadi-web",
   githubUrl: "https://github.com/zawadi-web",
   whatsappUrl: "https://wa.me/254769047490?text=Hi%20Gift,%20I'd%20like%20to%20discuss%20a%20software%20project.",
-  availability: "Based in Chuka, Kenya · Available for freelance & contract projects",
-  heroSubtitle: "From professional websites and custom business systems to payment integrations and web applications, I turn real business problems into practical digital solutions.",
-  aboutText: `I’m Gift Mukhwana, a software developer and Computer Science student based in Kenya. I started by learning how software works and gradually moved into building real digital products and solutions for businesses. Today, I enjoy taking a real-world problem, understanding how a business operates, and turning that problem into software people can actually use. My focus is not simply writing code. It is building useful solutions that create value.`,
+  availability: "Available for Remote Collaboration & Contract Engineering",
+  heroSubtitle: "From enterprise-grade web platforms and custom business systems to frictionless payment integrations and full-stack software, I build resilient digital solutions for ambitious clients across locations.",
+  aboutText: `I’m Gift Mukhwana, a software developer building production digital systems, modern web applications, and high-impact digital solutions. I specialize in turning complex operational challenges into high-performance software people and businesses actually rely on. Working across borders and timezones, my focus is delivering measurable business value through clean engineering, intuitive interfaces, and robust system architecture.`,
 };
 
 export const CAPABILITIES = [
@@ -59,35 +64,44 @@ export const CAPABILITIES = [
 export const PROJECTS: Project[] = [
   {
     id: "pendo-dating",
+    reelNumber: "REEL 01",
     name: "Pendo Dating Platform",
-    category: "Full-Stack Web Application",
-    description: "A full-stack dating platform featuring user authentication, profiles, matching, payments and administration.",
-    technologies: ["Next.js", "Prisma", "PostgreSQL", "Paystack"],
+    category: "Full-Stack Web Architecture",
+    logline: "High-concurrency social matching platform featuring resilient authentication, telemetry, and transactional gateways.",
+    description: "A comprehensive full-stack social web platform featuring user authentication, verified profile workflows, algorithmic matching logic, automated payment gateways, and administrative command telemetry.",
+    architectureScope: "Next.js App Router · Prisma ORM · PostgreSQL · Paystack API",
+    technologies: ["Next.js", "Prisma", "PostgreSQL", "Paystack", "TypeScript"],
     features: [
-      "User authentication & profile management",
-      "Dynamic matching logic & filter system",
-      "Paystack payment gateway integration",
-      "Administrative dashboard & control panel"
+      "User authentication & session management",
+      "Dynamic matching logic & algorithmic filtering",
+      "Paystack secure payment gateway integration",
+      "Real-time administrative telemetry & control panel"
     ]
   },
   {
     id: "eska-metalworks",
+    reelNumber: "REEL 02",
     name: "ESKA Metalworks",
-    category: "Corporate Business Website",
-    description: "A professional business website created to establish a stronger digital presence for a metalworks business.",
+    category: "Enterprise Commercial Platform",
+    logline: "High-performance digital brand experience engineered for industrial quotation and precision discovery.",
+    description: "A tailored commercial platform built to elevate market authority for an industrial fabrication firm, featuring interactive project showcases, client quote acquisition workflows, and search-optimized structure.",
+    architectureScope: "Next.js · TypeScript · Tailwind CSS · Static Optimization",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     features: [
-      "Mobile-optimized product showcase",
-      "Custom quote inquiry workflow",
-      "SEO-structured business presentation",
-      "High-speed responsive layout"
+      "Mobile-optimized industrial catalogue showcase",
+      "Automated quotation inquiry dispatch workflow",
+      "Technical SEO & performance-tuned page delivery",
+      "High-speed responsive layout and micro-interactions"
     ]
   },
   {
     id: "musamaths",
+    reelNumber: "REEL 03",
     name: "MusaMaths",
-    category: "EdTech Learning Platform",
-    description: "An online mathematics learning platform designed to provide students with a digital learning experience.",
+    category: "EdTech Learning Engine",
+    logline: "Interactive mathematical learning environment delivering curriculum modules and real-time student evaluation.",
+    description: "An interactive online mathematics learning platform designed to provide students with intuitive digital problem-solving modules, automated answer verification, curriculum progression tracking, and seamless cross-device accessibility.",
+    architectureScope: "Next.js · Node.js · TypeScript · Modular State Engine",
     technologies: ["Next.js", "TypeScript", "Node.js"],
     features: [
       "Interactive quiz & evaluation modules",
@@ -98,14 +112,17 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "smart-deal-furniture",
+    reelNumber: "REEL 04",
     name: "Smart Deal Furniture",
-    category: "Digital Catalog Concept",
-    description: "A digital presence concept developed for a furniture business.",
+    category: "Commercial Digital Catalog",
+    logline: "Conversion-oriented digital showroom connecting inventory discovery to direct transactional pipelines.",
+    description: "A modern commercial digital showroom engineered for retail furniture sales, offering seamless category browsing, high-resolution product carousels, and rapid direct-to-messaging conversion channels.",
+    architectureScope: "React · JavaScript · Modular CSS · WhatsApp API Linkage",
     technologies: ["React", "JavaScript", "CSS3"],
     features: [
-      "Product collection showcase",
-      "WhatsApp direct order inquiry flow",
-      "Category filtering & grid display",
+      "Dynamic product collection showcase",
+      "Direct order inquiry flow with prefilled cart details",
+      "Category filtering & responsive grid display",
       "Clean commercial brand presentation"
     ]
   }
@@ -115,41 +132,41 @@ export const SERVICES: Service[] = [
   {
     id: "business-websites",
     number: "01",
-    title: "Business Websites",
-    description: "Professional, responsive websites designed to help businesses establish credibility and attract customers online.",
-    highlights: ["Mobile-first responsive design", "SEO optimized structure", "Fast loading speeds", "Lead capture forms"],
+    title: "High-Impact Web Platforms",
+    description: "Production-ready, ultra-responsive web applications and corporate platforms built to establish market authority, attract international audiences, and convert visitors into clients.",
+    highlights: ["Mobile-first responsive architecture", "Core Web Vitals & SEO optimization", "Fast global CDN load speeds", "High-conversion lead capture systems"],
     iconName: "Globe"
   },
   {
     id: "custom-systems",
     number: "02",
     title: "Custom Business Systems",
-    description: "Digital systems tailored around the way a business actually operates — including dashboards, management workflows and internal tools.",
-    highlights: ["Internal management tools", "Operational dashboards", "User role management", "Automated workflows"],
+    description: "Software tailored precisely around your operational model—including internal workflow tools, automated reporting dashboards, inventory tracking, and client administration consoles.",
+    highlights: ["Internal management tools", "Operational dashboards & analytics", "Role-based access & permissions", "Workflow automation & logic"],
     iconName: "LayoutDashboard"
   },
   {
     id: "payment-integration",
     number: "03",
-    title: "Payment Integration",
-    description: "Integrate digital payment solutions into websites and applications to make receiving payments simpler and more efficient.",
-    highlights: ["Paystack integration", "M-Pesa / Daraja API integration", "Automated transaction callbacks", "Secure checkout flows"],
+    title: "Payment Gateways & FinTech",
+    description: "Frictionless transactional infrastructure integrated into web apps, enabling seamless digital payments across cards, mobile wallets, and regional gateways with webhook verifications.",
+    highlights: ["Paystack integration", "M-Pesa / Daraja API integration", "Automated webhook transaction callbacks", "Secure checkout & invoice flows"],
     iconName: "CreditCard"
   },
   {
     id: "web-applications",
     number: "04",
-    title: "Web Applications",
-    description: "Build custom web applications around specific business ideas, workflows and customer needs.",
-    highlights: ["SaaS & web products", "Database architecture", "RESTful API development", "Authentication & Security"],
+    title: "Full-Stack Web Applications",
+    description: "End-to-end software products engineered from the ground up—covering resilient database schemas, RESTful & serverless APIs, real-time interactivity, and authenticated portals.",
+    highlights: ["SaaS & web products", "Database architecture & indexing", "RESTful & secure API development", "Authentication & session security"],
     iconName: "Code2"
   },
   {
     id: "hosting-maintenance",
     number: "05",
-    title: "Hosting & Maintenance",
-    description: "Deployment, domains, SSL, updates and ongoing technical support.",
-    highlights: ["Vercel & cPanel setup", "Custom domain configuration", "SSL security certificates", "Ongoing technical maintenance"],
+    title: "Cloud Deployment & DevOps",
+    description: "Production infrastructure engineering, automated CI/CD pipelines, SSL provisioning, custom domain routing, performance monitoring, and continuous system maintenance.",
+    highlights: ["Vercel, AWS & modern cloud setup", "Custom domain & DNS configuration", "Automated deployment & SSL security", "Continuous technical maintenance"],
     iconName: "Server"
   }
 ];
@@ -157,27 +174,31 @@ export const SERVICES: Service[] = [
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     number: "01",
-    title: "DISCOVER",
-    description: "Understand the business, the problem and what the solution needs to achieve.",
-    deliverables: "Business requirements audit & project objective mapping"
+    phaseCode: "SCENE // DISCOVERY",
+    title: "DISCOVER & AUDIT",
+    description: "Deconstructing the core business objective, user needs, and architectural constraints into a clear technical blueprint.",
+    deliverables: "Requirements specification, user journeys & technical milestone plan"
   },
   {
     number: "02",
-    title: "PLAN",
-    description: "Define the features, user flow, technology and project scope before development begins.",
-    deliverables: "Architecture breakdown, design layout & milestone schedule"
+    phaseCode: "SCENE // BLUEPRINT",
+    title: "ARCHITECT & DESIGN",
+    description: "Establishing schema models, interface design systems, component hierarchies, and integration contracts before writing code.",
+    deliverables: "Wireframes, system architecture diagrams & schema definitions"
   },
   {
     number: "03",
-    title: "BUILD",
-    description: "Develop, test and refine the solution with a focus on usability, security and reliability.",
-    deliverables: "Clean code implementation, rigorous testing & progress previews"
+    phaseCode: "SCENE // PRODUCTION",
+    title: "ENGINEER & TEST",
+    description: "Full-stack development executed with strict type safety, modular design patterns, test coverage, and continuous client preview builds.",
+    deliverables: "Production-ready codebase, automated test suites & staging review"
   },
   {
     number: "04",
-    title: "LAUNCH",
-    description: "Deploy the finished product and provide the support needed after launch.",
-    deliverables: "Live server deployment, domain setup & post-launch support"
+    phaseCode: "SCENE // PREMIERE",
+    title: "DEPLOY & SCALE",
+    description: "Production release on global edge networks, SSL verification, telemetry monitoring, and ongoing post-launch maintenance.",
+    deliverables: "Live production deployment, documentation & ongoing support"
   }
 ];
 
@@ -185,44 +206,48 @@ export const TECH_CATEGORIES: TechCategory[] = [
   {
     category: "Frontend & Core",
     skills: [
-      { name: "JavaScript" },
       { name: "TypeScript" },
+      { name: "JavaScript (ESNext)" },
       { name: "React" },
-      { name: "Next.js" },
-      { name: "HTML" },
-      { name: "CSS" }
+      { name: "Next.js (App Router)" },
+      { name: "Tailwind CSS" },
+      { name: "HTML5 / CSS3" }
     ]
   },
   {
-    category: "Backend & Server",
+    category: "Backend & Systems",
     skills: [
       { name: "Node.js" },
       { name: "Python" },
-      { name: "Java" }
+      { name: "Java" },
+      { name: "RESTful APIs" }
     ]
   },
   {
     category: "Databases & ORM",
     skills: [
-      { name: "Prisma" },
+      { name: "Prisma ORM" },
       { name: "PostgreSQL" },
-      { name: "MySQL" }
+      { name: "MySQL" },
+      { name: "Database Modeling" }
     ]
   },
   {
-    category: "Payments & FinTech",
+    category: "Payments & Integration",
     skills: [
       { name: "Paystack" },
-      { name: "M-Pesa / Daraja" }
+      { name: "M-Pesa / Daraja API" },
+      { name: "Stripe" },
+      { name: "Webhook Pipelines" }
     ]
   },
   {
-    category: "Infrastructure & Tools",
+    category: "DevOps & Workflow",
     skills: [
-      { name: "Git" },
-      { name: "GitHub" },
-      { name: "Vercel" },
-      { name: "cPanel" }
+      { name: "Git & GitHub" },
+      { name: "Vercel & Edge Network" },
+      { name: "CI / CD Pipelines" },
+      { name: "Linux / Cloud Servers" }
     ]
   }
 ];

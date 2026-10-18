@@ -18,47 +18,47 @@ export default function Home() {
   const scrollToContact = () => {
     const el = document.getElementById("contact");
     if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 76;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#111E4A] text-[#F7F6F2]">
-      {/* Sticky Navigation */}
+    <main className="min-h-screen flex flex-col bg-[#06090E] text-[#F8FAFC]">
+      {/* Cinematic Studio Navigation */}
       <Navbar onStartProject={scrollToContact} />
 
-      {/* Hero */}
+      {/* Scene 01: Cold Open & Studio Telemetry */}
       <Hero />
 
-      {/* Capabilities strip */}
+      {/* Capabilities Strip / Reel Ticker */}
       <CapabilitiesStrip />
 
-      {/* Selected work */}
+      {/* Scene 02: Feature Releases & Case Studies */}
       <SelectedWork />
 
-      {/* Services */}
+      {/* Scene 03: Production Capabilities & Systems */}
       <Services />
 
-      {/* How I Work */}
+      {/* Scene 04: The Production Script & Workflow */}
       <Process />
 
-      {/* About Gift */}
+      {/* Scene 05: System Monograph (About The Maker) */}
       <About />
 
-      {/* Tech Stack */}
+      {/* Technical Arsenal & Toolchain */}
       <TechStack />
 
-      {/* Brand CTA */}
+      {/* Cinematic Studio CTA */}
       <BrandCTA />
 
-      {/* Contact & Inquiry */}
+      {/* Scene 06: Transmission & Inquiry */}
       <ContactSection />
 
-      {/* Footer */}
+      {/* Studio Colophon & Footer */}
       <Footer />
 
-      {/* Floating WhatsApp button — always visible, no phone number exposed */}
+      {/* Floating Encrypted WhatsApp Dispatch */}
       <FloatingWhatsApp />
     </main>
   );
