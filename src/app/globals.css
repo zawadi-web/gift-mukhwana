@@ -2,200 +2,146 @@
 
 @layer base {
   :root {
-    /* ─── The Digital Workshop Palette ────────────────────── */
-    --workshop-canvas:      #090D14; /* Deep graphite workshop floor */
-    --workshop-bench:       #0F1522; /* Primary workbench surface    */
-    --workshop-elevated:    #161F30; /* Elevated tool tray / modal   */
-    --workshop-border:      rgba(255, 255, 255, 0.08);
-    --workshop-border-hi:   rgba(255, 107, 53, 0.35);
+    /* ─── Point Forty-Inspired Editorial & Institutional Palette ─── */
+    --navy-deep:     #0A1929; /* Deep institutional navy background */
+    --navy-cobalt:   #16598D; /* Primary brand cobalt               */
+    --navy-surface:  #102A43; /* Elevated navy card surface         */
+    --navy-border:   rgba(255, 255, 255, 0.12);
 
-    /* ─── Telemetry & Signal Accents ──────────────────────── */
-    --signal-amber:         #FF6B35; /* Primary ignition & interactive */
-    --signal-amber-bright:  #FF8859; /* Hover state                   */
-    --signal-amber-glow:    rgba(255, 107, 53, 0.15);
+    --accent-orange: #F28621; /* Signature warm amber / orange       */
+    --accent-hover:  #FF9A3C; /* Hover state                         */
     
-    --telemetry-green:      #10B981; /* Live production indicator     */
-    --telemetry-cyan:       #06B6D4; /* Data stream / network link    */
+    --bg-light:      #FFFFFF; /* Crisp editorial white canvas       */
+    --bg-subtle:     #F8FAFC; /* Subtle background grey              */
+    --border-light:  #E2E8F0; /* Clean light border                  */
     
-    --text-primary:         #F1F5F9; /* Pure high-contrast titanium   */
-    --text-secondary:       #94A3B8; /* Technical annotations         */
-    --text-muted:           #64748B; /* De-emphasized coordinates     */
+    --text-navy:     #0A1929; /* High-contrast text on light        */
+    --text-muted:    #64748B; /* Secondary editorial text on light  */
+    --text-white:    #FFFFFF; /* Crisp text on dark                 */
+    --text-slate:    #CBD5E1; /* Secondary text on dark             */
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--workshop-canvas);
-    color: var(--text-primary);
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
   body {
-    background-color: var(--workshop-canvas);
-    color: var(--text-primary);
+    background-color: var(--navy-deep);
+    color: var(--text-white);
     overflow-x: hidden;
-    position: relative;
-    font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 }
 
-/* ─── Blueprint Grid Background Overlay ─────────────────────── */
-.blueprint-grid {
+/* ─── Clean Geometric Subtle Grid ───────────────────────────── */
+.point-grid {
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(#F28621 1px, transparent 1px),
+    linear-gradient(90deg, #F28621 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.point-grid-dark {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
-.blueprint-grid-dense {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-/* ─── Architectural Registration Brackets ───────────────────── */
-.registration-corner {
-  position: relative;
-}
-.registration-corner::before,
-.registration-corner::after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  pointer-events: none;
-  transition: all 0.25s ease;
-}
-.registration-corner::before {
-  top: -1px;
-  left: -1px;
-  border-top: 1.5px solid var(--signal-amber);
-  border-left: 1.5px solid var(--signal-amber);
-}
-.registration-corner::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 1.5px solid var(--signal-amber);
-  border-right: 1.5px solid var(--signal-amber);
-}
-
-/* ─── Workshop Tactile Buttons ──────────────────────────────── */
-.workshop-btn-primary {
+/* ─── Clean Buttons ─────────────────────────────────────────── */
+.btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: var(--signal-amber);
-  color: #090D14;
-  font-weight: 700;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.8125rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid #FF8859;
-  border-radius: 2px;
-  box-shadow: 0 2px 10px rgba(255, 107, 53, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-
-.workshop-btn-primary:hover {
-  background-color: var(--signal-amber-bright);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 18px rgba(255, 107, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
-.workshop-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background-color: rgba(22, 31, 48, 0.7);
-  color: #E2E8F0;
-  font-weight: 600;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 2px;
-  backdrop-filter: blur(8px);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-
-.workshop-btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 107, 53, 0.5);
+  padding: 0.875rem 2rem;
+  background-color: #F28621;
   color: #FFFFFF;
-  transform: translateY(-1px);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(242, 134, 33, 0.3);
+  cursor: pointer;
 }
 
-/* ─── Custom Engineering Scrollbar ──────────────────────────── */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #090D14;
-}
-::-webkit-scrollbar-thumb {
-  background: #1E293B;
-  border-radius: 1px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--signal-amber);
+.btn-primary:hover {
+  background-color: #FF9A3C;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(242, 134, 33, 0.45);
 }
 
-/* ─── Floating WhatsApp Hotline ─────────────────────────────── */
-.floating-hotline {
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* ─── Floating WhatsApp Button ───────────────────────────────── */
+.wa-floating-btn {
   position: fixed;
   bottom: 24px;
-  right: 20px;
+  right: 24px;
   z-index: 999;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: #0F172A;
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  gap: 10px;
+  padding: 12px 20px;
+  background-color: #0A1929;
+  color: #FFFFFF;
+  border: 1px solid rgba(242, 134, 33, 0.4);
   border-radius: 9999px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 12px rgba(16, 185, 129, 0.2);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
   text-decoration: none;
 }
-.floating-hotline:hover {
-  transform: translateY(-2px) scale(1.02);
-  border-color: #10B981;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(16, 185, 129, 0.4);
+
+.wa-floating-btn:hover {
+  border-color: #F28621;
+  background-color: #102A43;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(242, 134, 33, 0.25);
 }
 
-/* ─── Terminal / Monospace Stamp Text ───────────────────────── */
-.telemetry-stamp {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+/* ─── Custom Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A1929;
+}
+::-webkit-scrollbar-thumb {
+  background: #16598D;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F28621;
 }
 
-/* ─── Pulsing Beacon ────────────────────────────────────────── */
-@keyframes beacon-pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(0.85);
-  }
-}
-.beacon-active {
-  animation: beacon-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* ─── Accessibility: Reduced Motion ─────────────────────────── */
+/* ─── Reduced Motion Support ─────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

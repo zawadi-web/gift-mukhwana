@@ -3,20 +3,19 @@
 import React from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { SelectedWork } from "@/components/SelectedWork";
-import { Services } from "@/components/Services";
-import { Process } from "@/components/Process";
 import { About } from "@/components/About";
-import { TechStack } from "@/components/TechStack";
+import { SelectedWork } from "@/components/SelectedWork";
+import { Process } from "@/components/Process";
+import { Services } from "@/components/Services";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   const scrollToContact = () => {
-    const el = document.getElementById("dispatch");
+    const el = document.getElementById("contact");
     if (el) {
-      const offset = 70;
+      const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = el.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -24,41 +23,38 @@ export default function Home() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#090D14] text-[#F1F5F9] selection:bg-[#FF6B35] selection:text-[#090D14]">
-      {/* ── Workbench Header & Telemetry Bar ── */}
+    <main className="min-h-screen flex flex-col bg-[#0A1929] text-white">
+      {/* ── Fixed Clean Navigation ── */}
       <Navbar onStartProject={scrollToContact} />
 
-      {/* ── Station 01: Draughtsman's Desk & Builder Thesis ── */}
+      {/* ── Hero: Confident Large Typography & Value Proposition ── */}
       <Hero />
 
-      {/* ── Station 02: Project Artifacts (Interactive Showcases) ── */}
-      <SelectedWork />
-
-      {/* ── Station 03: Engineering Ledger & Architectural Disciplines ── */}
-      <Services />
-
-      {/* ── The Production Pipeline (Dissect, Architect, Forge, Commission) ── */}
-      <Process />
-
-      {/* ── Station 04: Builder Dossier (Profile & Engineering Tenets) ── */}
+      {/* ── Foundation & Overview: Clean Metrics & Institutional Profile ── */}
       <About />
 
-      {/* ── The Toolchain & Production Arsenal ── */}
-      <TechStack />
+      {/* ── Featured Systems: Clean Solutions (Genesis POS, Rada, Express Ride, ESKA) ── */}
+      <SelectedWork />
 
-      {/* ── Station 05: Transmission Console (Inquiry Dispatch) ── */}
+      {/* ── Philosophy: 3 Enduring Principles ── */}
+      <Process />
+
+      {/* ── Core Capabilities: 4 Engineering Disciplines ── */}
+      <Services />
+
+      {/* ── Contact: Initiate Collaboration & Start a Project ── */}
       <ContactSection />
 
-      {/* ── Workshop Colophon & Footer ── */}
+      {/* ── Institutional Footer ── */}
       <Footer />
 
-      {/* ── Floating WhatsApp Hotline ── */}
+      {/* ── WhatsApp Hotline ── */}
       <FloatingWhatsApp />
     </main>
   );

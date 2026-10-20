@@ -96,7 +96,7 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body
-        className="min-h-full flex flex-col bg-[#090D14] text-[#F1F5F9] selection:bg-[#FF6B35] selection:text-[#090D14]"
+        className="min-h-full flex flex-col bg-[#0A1929] text-white selection:bg-[#F28621] selection:text-white"
       >
         {children}
       </body>

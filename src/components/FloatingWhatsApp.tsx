@@ -11,11 +11,11 @@ export const FloatingWhatsApp: React.FC = () => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Direct WhatsApp Hotline to Gift Mukhwana"
-      className="floating-hotline font-mono text-xs text-slate-100 group"
+      className="wa-floating-btn"
     >
-      <span className="w-2 h-2 rounded-full bg-emerald-400 beacon-active" />
-      <MessageSquare className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
-      <span className="hidden sm:inline font-bold">WHATSAPP HOTLINE</span>
+      <span className="w-2.5 h-2.5 rounded-full bg-[#F28621] animate-pulse" />
+      <MessageSquare className="w-5 h-5 text-[#F28621]" />
+      <span className="hidden sm:inline">WhatsApp</span>
     </a>
   );
 };
