@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { X, Check, Cpu, Terminal, Layers, Globe } from "lucide-react";
+import { X, Check, Terminal, ExternalLink, ShieldCheck } from "lucide-react";
 import { Project } from "@/data/portfolioData";
 
 interface ProjectModalProps {
@@ -28,107 +28,98 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md"
       onClick={onClose}
     >
       <div
-        className="viewfinder-bracket bg-[#0A0F1D] border border-[#D4A838]/40 rounded-xl max-w-2xl w-full overflow-hidden shadow-2xl text-slate-200 relative"
+        className="bg-[#0F1522] border border-white/20 rounded-xs max-w-2xl w-full overflow-hidden shadow-2xl text-slate-200 relative registration-corner"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Slate Header */}
-        <div className="bg-[#06090E] px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+        {/* Modal Header */}
+        <div className="bg-[#090D14] px-6 py-4 border-b border-white/10 flex items-center justify-between font-mono">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono text-[#ECC45F] uppercase tracking-widest">
-                {project.reelNumber || "FEATURE RELEASE"} // {project.category}
+              <span className="text-[10px] text-[#FF6B35] font-bold uppercase tracking-wider">
+                // {project.category}
+              </span>
+              <span className="px-1.5 py-0.2 bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[9px] font-bold rounded-xs">
+                {project.statusBadge}
               </span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight mt-0.5">
+            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
               {project.name}
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors cursor-pointer"
-            aria-label="Close dossier"
+            className="p-1.5 text-slate-400 hover:text-white rounded-xs hover:bg-white/5 transition-colors cursor-pointer"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-
-          {/* Architectural Overview Box */}
-          <div className="bg-[#11182B] border border-slate-800 rounded-lg p-5 relative space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 text-xs font-mono">
-              <div className="flex items-center space-x-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                <span className="text-slate-400 ml-2">{project.id}.production.sys</span>
-              </div>
-              <span className="text-[#ECC45F] font-semibold">DEPLOYED</span>
-            </div>
-
-            {project.logline && (
-              <p className="text-xs font-mono text-[#ECC45F] italic">
-                &quot;{project.logline}&quot;
-              </p>
-            )}
-
-            <p className="text-sm text-slate-300 leading-relaxed font-light">
+        <div className="p-6 space-y-5 max-h-[75vh] overflow-y-auto font-sans">
+          <div>
+            <div className="text-[10px] font-mono text-slate-500 uppercase">// ARCHITECTURAL SUMMARY</div>
+            <p className="text-sm text-slate-300 leading-relaxed mt-1">
               {project.description}
             </p>
+          </div>
 
-            {/* Technologies */}
-            <div className="pt-2 flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-xs font-mono px-2.5 py-1 rounded bg-[#0A0F1D] text-[#ECC45F] border border-[#D4A838]/25"
-                >
-                  {tech}
-                </span>
+          <div className="p-4 bg-[#090D14] border border-white/10 rounded-xs font-mono text-xs">
+            <div className="text-[10px] text-[#FF6B35] uppercase font-bold mb-1">// TECHNICAL IMPLEMENTATION:</div>
+            <p className="text-slate-300 text-xs leading-relaxed font-sans">
+              {project.technicalOverview}
+            </p>
+          </div>
+
+          {/* Features */}
+          <div>
+            <div className="text-[10px] font-mono text-slate-500 uppercase mb-2">// KEY SYSTEM DELIVERABLES</div>
+            <div className="space-y-1.5">
+              {project.features.map((feat, i) => (
+                <div key={i} className="flex items-start gap-2 text-xs text-slate-300">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <span>{feat}</span>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Key Deliverables & Features */}
-          {project.features && project.features.length > 0 && (
-            <div className="space-y-3">
-              <h4 className="text-xs font-mono font-bold uppercase text-[#ECC45F] tracking-wider flex items-center">
-                <Cpu className="w-4 h-4 mr-1.5 text-[#D4A838]" /> Core Deliverables &amp; Architectural Features
-              </h4>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-300">
-                {project.features.map((feat, idx) => (
-                  <li key={idx} className="flex items-start space-x-2 bg-[#11182B] p-3 rounded border border-slate-800">
-                    <Check className="w-4 h-4 text-[#ECC45F] shrink-0 mt-0.5" />
-                    <span>{feat}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Technologies */}
+          <div className="pt-2">
+            <div className="text-[10px] font-mono text-slate-500 uppercase mb-2">// TOOLCHAIN</div>
+            <div className="flex flex-wrap gap-1.5">
+              {project.technologies.map((t) => (
+                <span
+                  key={t}
+                  className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-xs text-[11px] font-mono text-slate-300"
+                >
+                  {t}
+                </span>
+              ))}
             </div>
-          )}
-
-          {/* Engineering Approach */}
-          <div className="bg-[#06090E] p-4 rounded-lg border border-slate-800 text-xs font-mono text-slate-300 space-y-1">
-            <span className="font-semibold text-white block">Engineering Approach</span>
-            <p className="text-slate-400 leading-relaxed">
-              Designed with strict type safety, modular data handling, fast loading speeds, and robust error resilience for production business use.
-            </p>
           </div>
         </div>
 
-        {/* Modal Slate Footer */}
-        <div className="bg-[#06090E] px-6 py-4 border-t border-slate-800 flex items-center justify-between text-xs font-mono">
-          <span className="text-slate-400">STATUS // PRODUCTION READY</span>
-          <button
-            onClick={onClose}
-            className="gold-btn px-5 py-2 rounded text-xs font-bold uppercase tracking-wider cursor-pointer"
-          >
-            CLOSE DOSSIER
-          </button>
+        {/* Modal Footer */}
+        <div className="bg-[#090D14] px-6 py-3.5 border-t border-white/10 flex items-center justify-between font-mono text-xs">
+          <span className="text-slate-500 text-[11px]">
+            SCOPE: {project.architectureScope}
+          </span>
+          {project.url && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="workshop-btn-primary py-1.5 px-3 text-xs"
+            >
+              <span>LAUNCH LIVE APPLICATION</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          )}
         </div>
       </div>
     </div>

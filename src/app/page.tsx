@@ -1,64 +1,64 @@
 "use client";
 
 import React from "react";
-import { Navbar }             from "@/components/Navbar";
-import { Hero }               from "@/components/Hero";
-import { CapabilitiesStrip }  from "@/components/CapabilitiesStrip";
-import { SelectedWork }       from "@/components/SelectedWork";
-import { Services }           from "@/components/Services";
-import { Process }            from "@/components/Process";
-import { About }              from "@/components/About";
-import { TechStack }          from "@/components/TechStack";
-import { BrandCTA }           from "@/components/BrandCTA";
-import { ContactSection }     from "@/components/ContactSection";
-import { Footer }             from "@/components/Footer";
-import { FloatingWhatsApp }   from "@/components/FloatingWhatsApp";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { SelectedWork } from "@/components/SelectedWork";
+import { Services } from "@/components/Services";
+import { Process } from "@/components/Process";
+import { About } from "@/components/About";
+import { TechStack } from "@/components/TechStack";
+import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   const scrollToContact = () => {
-    const el = document.getElementById("contact");
+    const el = document.getElementById("dispatch");
     if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 76;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      const offset = 70;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#06090E] text-[#F8FAFC]">
-      {/* Cinematic Studio Navigation */}
+    <main className="min-h-screen flex flex-col bg-[#090D14] text-[#F1F5F9] selection:bg-[#FF6B35] selection:text-[#090D14]">
+      {/* ── Workbench Header & Telemetry Bar ── */}
       <Navbar onStartProject={scrollToContact} />
 
-      {/* Scene 01: Cold Open & Studio Telemetry */}
+      {/* ── Station 01: Draughtsman's Desk & Builder Thesis ── */}
       <Hero />
 
-      {/* Capabilities Strip / Reel Ticker */}
-      <CapabilitiesStrip />
-
-      {/* Scene 02: Feature Releases & Case Studies */}
+      {/* ── Station 02: Project Artifacts (Interactive Showcases) ── */}
       <SelectedWork />
 
-      {/* Scene 03: Production Capabilities & Systems */}
+      {/* ── Station 03: Engineering Ledger & Architectural Disciplines ── */}
       <Services />
 
-      {/* Scene 04: The Production Script & Workflow */}
+      {/* ── The Production Pipeline (Dissect, Architect, Forge, Commission) ── */}
       <Process />
 
-      {/* Scene 05: System Monograph (About The Maker) */}
+      {/* ── Station 04: Builder Dossier (Profile & Engineering Tenets) ── */}
       <About />
 
-      {/* Technical Arsenal & Toolchain */}
+      {/* ── The Toolchain & Production Arsenal ── */}
       <TechStack />
 
-      {/* Cinematic Studio CTA */}
-      <BrandCTA />
-
-      {/* Scene 06: Transmission & Inquiry */}
+      {/* ── Station 05: Transmission Console (Inquiry Dispatch) ── */}
       <ContactSection />
 
-      {/* Studio Colophon & Footer */}
+      {/* ── Workshop Colophon & Footer ── */}
       <Footer />
 
-      {/* Floating Encrypted WhatsApp Dispatch */}
+      {/* ── Floating WhatsApp Hotline ── */}
       <FloatingWhatsApp />
     </main>
   );

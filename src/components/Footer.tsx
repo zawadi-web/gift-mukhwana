@@ -1,120 +1,106 @@
 "use client";
 
 import React from "react";
-import { Mail, Globe2, ArrowUp, Film } from "lucide-react";
-import { GithubIcon } from "./GithubIcon";
-import { PERSONAL_INFO } from "@/data/portfolioData";
 import { GMLogo } from "./GMLogo";
+import { PERSONAL_INFO } from "@/data/portfolioData";
+import { ArrowUp, Terminal, Shield, ArrowUpRight } from "lucide-react";
 
 export const Footer: React.FC = () => {
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 76;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="bg-[#06090E] text-slate-400 border-t border-slate-800 pt-16 pb-12 font-mono">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-
-        {/* Footer Top Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 pb-12 border-b border-slate-800">
-
-          {/* Brand & Studio Column */}
-          <div className="md:col-span-5 space-y-4">
-            <a
-              href="#top"
-              onClick={(e) => { e.preventDefault(); scrollToTop(); }}
-              className="inline-block"
-              aria-label="Gift Mukhwana — Home"
-            >
-              <GMLogo variant="full" mode="dark" size="md" />
-            </a>
-            <p className="text-xs text-slate-300 font-light max-w-sm leading-relaxed font-sans">
-              &quot;Engineering high-impact digital systems, web applications, and scalable business software that travels anywhere.&quot;
+    <footer className="bg-[#060A10] border-t border-white/10 px-4 sm:px-8 py-16 text-slate-400 font-mono text-xs relative">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-white/10 items-start">
+          {/* Logo & Colophon */}
+          <div className="md:col-span-5">
+            <GMLogo variant="full" size="md" />
+            <p className="mt-4 text-slate-400 text-xs leading-relaxed max-w-sm font-sans">
+              The Digital Workshop of Gift Mukhwana. Architecting custom business systems, offline-ready applications, and high-impact digital solutions for clients worldwide.
             </p>
-            <div className="pt-1 text-[11px] text-[#ECC45F] flex items-center gap-1.5">
-              <Globe2 className="w-3.5 h-3.5" />
-              <span>{PERSONAL_INFO.location}</span>
+            <div className="mt-4 flex items-center gap-2 text-[10px] text-slate-500">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span>COLOPHON // ALL SYSTEMS VERIFIED &amp; MAINTAINED</span>
             </div>
           </div>
 
-          {/* Scene Navigation */}
-          <div className="md:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-widest">SCENE JUMP</h4>
-            <ul className="space-y-2 text-xs">
-              {[
-                { label: "01. Work & Releases",     id: "work" },
-                { label: "02. Services & Systems",  id: "services" },
-                { label: "03. Production Workflow", id: "process" },
-                { label: "04. System Monograph",    id: "about" },
-                { label: "05. Transmit Inquiry",    id: "contact" },
-              ].map((link) => (
-                <li key={link.id}>
-                  <button
-                    onClick={() => scrollToSection(link.id)}
-                    className="hover:text-[#ECC45F] transition-colors uppercase tracking-wider cursor-pointer"
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
+          {/* Quick Station Navigation */}
+          <div className="md:col-span-3 space-y-2">
+            <div className="text-[10px] uppercase text-[#FF6B35] font-bold tracking-wider mb-2">
+              // WORKSHOP DIRECTORY
+            </div>
+            <div>
+              <a href="#workbench" className="hover:text-slate-200 transition-colors block py-0.5">
+                [01] Draughtsman&apos;s Desk
+              </a>
+            </div>
+            <div>
+              <a href="#artifacts" className="hover:text-slate-200 transition-colors block py-0.5">
+                [02] Project Artifacts
+              </a>
+            </div>
+            <div>
+              <a href="#ledger" className="hover:text-slate-200 transition-colors block py-0.5">
+                [03] Engineering Ledger
+              </a>
+            </div>
+            <div>
+              <a href="#craftsman" className="hover:text-slate-200 transition-colors block py-0.5">
+                [04] Builder Dossier
+              </a>
+            </div>
+            <div>
+              <a href="#dispatch" className="hover:text-slate-200 transition-colors block py-0.5">
+                [05] Transmission Console
+              </a>
+            </div>
           </div>
 
-          {/* Direct Channels */}
-          <div className="md:col-span-4 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-widest">TRANSMISSION CHANNELS</h4>
-            <div className="space-y-2.5 text-xs text-slate-300">
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#ECC45F]" />
-                <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-[#ECC45F] transition-colors break-all">
-                  {PERSONAL_INFO.email}
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Globe2 className="w-3.5 h-3.5 text-[#ECC45F]" />
-                <span>{PERSONAL_INFO.locationShort}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <GithubIcon className="w-3.5 h-3.5 text-[#ECC45F]" />
-                <a
-                  href={PERSONAL_INFO.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#ECC45F] transition-colors"
-                >
-                  {PERSONAL_INFO.github}
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-slate-400 italic font-sans text-[11px]">
-                <span className="text-[#25D366] text-xs">●</span>
-                <span>WhatsApp: Instant dispatch enabled</span>
-              </div>
+          {/* Verified Contacts */}
+          <div className="md:col-span-4 space-y-2">
+            <div className="text-[10px] uppercase text-[#FF6B35] font-bold tracking-wider mb-2">
+              // VERIFIED CHANNELS
+            </div>
+            <div className="text-slate-300">
+              EMAIL:{" "}
+              <a href={`mailto:${PERSONAL_INFO.email}`} className="text-amber-400 hover:underline">
+                {PERSONAL_INFO.email}
+              </a>
+            </div>
+            <div className="text-slate-300">
+              HOTLINE:{" "}
+              <a href={PERSONAL_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">
+                {PERSONAL_INFO.phoneFormatted}
+              </a>
+            </div>
+            <div className="text-slate-300">
+              GITHUB:{" "}
+              <a href={PERSONAL_INFO.githubUrl} target="_blank" rel="noopener noreferrer" className="text-slate-200 hover:underline">
+                {PERSONAL_INFO.github}
+              </a>
+            </div>
+            <div className="text-[11px] text-slate-500 pt-2">
+              OPERATING: Location-Independent · Global Client Delivery
             </div>
           </div>
         </div>
 
-        {/* Footer Bottom Slate */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <div className="flex items-center gap-2">
-            <Film className="w-3.5 h-3.5 text-[#ECC45F]" />
-            <span>© 2026 {PERSONAL_INFO.name}. All rights reserved.</span>
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-wrap items-center justify-between gap-4 text-[11px] text-slate-500">
+          <div>
+            &copy; {new Date().getFullYear()} Gift Mukhwana. Handcrafted in TypeScript &amp; Next.js.
           </div>
+
           <button
             onClick={scrollToTop}
-            className="p-2 px-4 rounded bg-[#11182B] text-[#ECC45F] hover:bg-[#D4A838] hover:text-[#06090E] transition-colors flex items-center gap-1.5 cursor-pointer border border-[#D4A838]/30 font-bold"
-            aria-label="Scroll to top"
+            className="flex items-center gap-1.5 text-slate-400 hover:text-slate-200 transition-colors py-1 px-2.5 bg-white/5 border border-white/10 rounded-xs"
           >
             <span>BACK TO TOP</span>
             <ArrowUp className="w-3.5 h-3.5" />
           </button>
         </div>
-
       </div>
     </footer>
   );

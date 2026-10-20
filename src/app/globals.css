@@ -2,189 +2,205 @@
 
 @layer base {
   :root {
-    /* ─── Cinematic Noir & Studio Gold Palette ───────────────── */
-    --cinema-black:    #06090E;   /* deep celluloid obsidian      */
-    --cinema-bg:       #0A0F1D;   /* soundstage midnight canvas   */
-    --cinema-surface:  #11182B;   /* studio surface panel         */
-    --cinema-elevated: #18223C;   /* elevated viewport card       */
-    --cinema-border:   rgba(229, 184, 66, 0.18);
-    --cinema-border-hi:rgba(229, 184, 66, 0.45);
-    
-    /* ─── Studio Lighting (Tungsten Gold & Phosphor Accents) ── */
-    --gold:            #D4A838;   /* primary studio tungsten gold */
-    --gold-bright:     #ECC45F;   /* anamorphic highlight         */
-    --gold-dim:        #8C6E20;   /* subtle brass shade           */
-    --gold-glow:       rgba(212, 168, 56, 0.15);
-    --gold-subtle:     rgba(212, 168, 56, 0.08);
+    /* ─── The Digital Workshop Palette ────────────────────── */
+    --workshop-canvas:      #090D14; /* Deep graphite workshop floor */
+    --workshop-bench:       #0F1522; /* Primary workbench surface    */
+    --workshop-elevated:    #161F30; /* Elevated tool tray / modal   */
+    --workshop-border:      rgba(255, 255, 255, 0.08);
+    --workshop-border-hi:   rgba(255, 107, 53, 0.35);
 
-    --text-primary:    #F8FAFC;
-    --text-secondary:  #94A3B8;
-    --text-muted:      #64748B;
+    /* ─── Telemetry & Signal Accents ──────────────────────── */
+    --signal-amber:         #FF6B35; /* Primary ignition & interactive */
+    --signal-amber-bright:  #FF8859; /* Hover state                   */
+    --signal-amber-glow:    rgba(255, 107, 53, 0.15);
+    
+    --telemetry-green:      #10B981; /* Live production indicator     */
+    --telemetry-cyan:       #06B6D4; /* Data stream / network link    */
+    
+    --text-primary:         #F1F5F9; /* Pure high-contrast titanium   */
+    --text-secondary:       #94A3B8; /* Technical annotations         */
+    --text-muted:           #64748B; /* De-emphasized coordinates     */
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: var(--cinema-black);
+    background-color: var(--workshop-canvas);
     color: var(--text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   body {
-    background-color: var(--cinema-black);
+    background-color: var(--workshop-canvas);
     color: var(--text-primary);
     overflow-x: hidden;
     position: relative;
+    font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 }
 
-/* ─── Cinematic Film Grain Overlay ───────────────────────────── */
-.film-grain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 40;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+/* ─── Blueprint Grid Background Overlay ─────────────────────── */
+.blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-/* ─── Viewfinder Reticle Brackets ────────────────────────────── */
-.viewfinder-bracket {
+.blueprint-grid-dense {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ─── Architectural Registration Brackets ───────────────────── */
+.registration-corner {
   position: relative;
 }
-.viewfinder-bracket::before,
-.viewfinder-bracket::after {
+.registration-corner::before,
+.registration-corner::after {
   content: "";
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border-color: rgba(212, 168, 56, 0.4);
+  width: 8px;
+  height: 8px;
   pointer-events: none;
+  transition: all 0.25s ease;
 }
-.viewfinder-bracket::before {
+.registration-corner::before {
   top: -1px;
   left: -1px;
-  border-top: 1.5px solid var(--gold);
-  border-left: 1.5px solid var(--gold);
+  border-top: 1.5px solid var(--signal-amber);
+  border-left: 1.5px solid var(--signal-amber);
 }
-.viewfinder-bracket::after {
+.registration-corner::after {
   bottom: -1px;
   right: -1px;
-  border-bottom: 1.5px solid var(--gold);
-  border-right: 1.5px solid var(--gold);
+  border-bottom: 1.5px solid var(--signal-amber);
+  border-right: 1.5px solid var(--signal-amber);
 }
 
-/* ─── Studio Buttons ─────────────────────────────────────────── */
-.gold-btn {
-  background: linear-gradient(135deg, #ECC45F 0%, #D4A838 50%, #B8861B 100%);
-  color: #06090E;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 18px rgba(212, 168, 56, 0.25);
-}
-
-.gold-btn:hover {
-  background: linear-gradient(135deg, #FFF0B3 0%, #ECC45F 50%, #D4A838 100%);
-  transform: translateY(-1.5px);
-  box-shadow: 0 8px 26px rgba(212, 168, 56, 0.42);
-}
-
-.gold-outline-btn {
-  border: 1px solid rgba(212, 168, 56, 0.45);
-  color: #ECC45F;
-  background: rgba(10, 15, 29, 0.6);
-  backdrop-filter: blur(8px);
-  letter-spacing: 0.08em;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.gold-outline-btn:hover {
-  background: rgba(212, 168, 56, 0.12);
-  border-color: #ECC45F;
-  color: #FFFFFF;
-  box-shadow: 0 0 20px rgba(212, 168, 56, 0.25);
-  transform: translateY(-1.5px);
-}
-
-/* ─── Custom Scrollbar ───────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #06090E;
-}
-::-webkit-scrollbar-thumb {
-  background: #18223C;
-  border-radius: 3px;
-  border: 1px solid rgba(212, 168, 56, 0.2);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #D4A838;
-}
-
-/* ─── Floating WhatsApp Button ───────────────────────────────── */
-.wa-float {
-  position: fixed;
-  bottom: 28px;
-  right: 24px;
-  z-index: 999;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: #25D366;
-  display: flex;
+/* ─── Workshop Tactile Buttons ──────────────────────────────── */
+.workshop-btn-primary {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--signal-amber);
+  color: #090D14;
+  font-weight: 700;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid #FF8859;
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(255, 107, 53, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.workshop-btn-primary:hover {
+  background-color: var(--signal-amber-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(255, 107, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.workshop-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: rgba(22, 31, 48, 0.7);
+  color: #E2E8F0;
+  font-weight: 600;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.workshop-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 107, 53, 0.5);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* ─── Custom Engineering Scrollbar ──────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #090D14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 1px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--signal-amber);
+}
+
+/* ─── Floating WhatsApp Hotline ─────────────────────────────── */
+.floating-hotline {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #0F172A;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: 9999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 12px rgba(16, 185, 129, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
 }
-
-.wa-float:hover {
-  transform: scale(1.08);
-  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.6);
+.floating-hotline:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: #10B981;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(16, 185, 129, 0.4);
 }
 
-.wa-float svg {
-  width: 28px;
-  height: 28px;
-  fill: #ffffff;
+/* ─── Terminal / Monospace Stamp Text ───────────────────────── */
+.telemetry-stamp {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-/* ─── Keyframe Animations ────────────────────────────────────── */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* ─── Pulsing Beacon ────────────────────────────────────────── */
+@keyframes beacon-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+.beacon-active {
+  animation: beacon-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.4s ease forwards;
-}
-
-.animate-pulseGlow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+/* ─── Accessibility: Reduced Motion ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -96,10 +96,8 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body
-        className="min-h-full flex flex-col bg-[#06090E] text-[#F8FAFC] selection:bg-[#D4A838] selection:text-[#06090E]"
+        className="min-h-full flex flex-col bg-[#090D14] text-[#F1F5F9] selection:bg-[#FF6B35] selection:text-[#090D14]"
       >
-        {/* Subtle cinematic celluloid grain texture */}
-        <div className="film-grain" aria-hidden="true" />
         {children}
       </body>
     </html>

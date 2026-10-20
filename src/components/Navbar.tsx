@@ -1,162 +1,198 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight, Radio } from "lucide-react";
 import { GMLogo } from "./GMLogo";
+import { WORKSHOP_STATIONS, PERSONAL_INFO } from "@/data/portfolioData";
+import { Terminal, Menu, X, ArrowUpRight, Radio } from "lucide-react";
 
 interface NavbarProps {
   onStartProject?: () => void;
 }
 
-const NAV_SCENES = [
-  { label: "WORK",         sceneNum: "01", section: "work" },
-  { label: "SERVICES",     sceneNum: "02", section: "services" },
-  { label: "WORKFLOW",     sceneNum: "03", section: "process" },
-  { label: "ABOUT",        sceneNum: "04", section: "about" },
-  { label: "CONTACT",      sceneNum: "05", section: "contact" },
-];
-
 export const Navbar: React.FC<NavbarProps> = ({ onStartProject }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeStation, setActiveStation] = useState("workbench");
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+
+      // Track active section
+      const stations = ["workbench", "artifacts", "ledger", "craftsman", "dispatch"];
+      const scrollPos = window.scrollY + 200;
+
+      for (let i = stations.length - 1; i >= 0; i--) {
+        const el = document.getElementById(stations[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveStation(stations[i]);
+          break;
+        }
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
-    const el = document.getElementById(id);
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 76;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 70;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
 
-  const handleStartProject = () => {
-    setMobileMenuOpen(false);
-    onStartProject ? onStartProject() : scrollToSection("contact");
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-[#06090E]/95 backdrop-blur-md py-3 border-b border-[#D4A838]/20 shadow-2xl shadow-black/80"
-          : "bg-[#06090E]/80 backdrop-blur-xs py-4 border-b border-white/5"
+        scrolled
+          ? "bg-[#090D14]/90 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.7)]"
+          : "bg-[#090D14]/50 backdrop-blur-xs border-b border-white/5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-
-        {/* ── Brand Logo & Studio Identifier ── */}
+      {/* Top micro telemetry strip */}
+      <div className="border-b border-white/5 bg-[#0B1019]/60 px-4 sm:px-8 py-1 hidden sm:flex items-center justify-between text-[10px] font-mono text-slate-400">
+        <div className="flex items-center gap-3">
+          <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 beacon-active" />
+            STATION: DIGITAL WORKSHOP
+          </span>
+          <span className="text-slate-600">|</span>
+          <span>LOCATION: INDEPENDENT / WORLDWIDE</span>
+          <span className="text-slate-600">|</span>
+          <span className="text-slate-300">SYS LATENCY: &lt;15ms</span>
+        </div>
         <div className="flex items-center gap-4">
           <a
-            href="#top"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="flex-shrink-0 focus:outline-none group flex items-center"
-            aria-label="Gift Mukhwana — Software Studio"
+            href={PERSONAL_INFO.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-slate-200 transition-colors flex items-center gap-1"
           >
-            <GMLogo variant="full" mode="dark" size="sm" />
+            {PERSONAL_INFO.github}
+            <ArrowUpRight className="w-3 h-3 text-slate-500" />
           </a>
-
-          {/* Soundstage / Studio Status Indicator */}
-          <div className="hidden xl:flex items-center gap-2 pl-4 border-l border-slate-800 text-[10px] font-mono text-slate-400">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span className="tracking-widest uppercase text-slate-300">REMOTE COLLABORATION // WORLDWIDE</span>
-          </div>
+          <span className="text-slate-600">|</span>
+          <span className="text-amber-400 font-mono">STATUS: AVAILABLE</span>
         </div>
+      </div>
 
-        {/* ── Cinematic Scene Navigation (Desktop) ── */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Main scene navigation">
-          {NAV_SCENES.map((scene) => (
-            <button
-              key={scene.section}
-              onClick={() => scrollToSection(scene.section)}
-              className="group flex items-baseline gap-1.5 text-xs font-mono tracking-widest text-slate-300 hover:text-[#ECC45F] transition-colors uppercase cursor-pointer"
-            >
-              <span className="text-[10px] text-[#D4A838]/60 group-hover:text-[#ECC45F] transition-colors">
-                {scene.sceneNum}.
-              </span>
-              <span className="font-semibold">{scene.label}</span>
-            </button>
-          ))}
+      {/* Main navigation toolbar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 sm:h-18 flex items-center justify-between">
+        <a
+          href="#workbench"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo("workbench");
+          }}
+          className="cursor-pointer"
+        >
+          <GMLogo variant="full" size="md" />
+        </a>
+
+        {/* Desktop Stations Switcher */}
+        <nav className="hidden lg:flex items-center gap-1 bg-[#101726]/80 p-1 border border-white/10 rounded-sm">
+          {WORKSHOP_STATIONS.map((station) => {
+            const isActive = activeStation === station.id;
+            return (
+              <button
+                key={station.id}
+                onClick={() => scrollTo(station.id)}
+                className={`px-3 py-1.5 text-xs font-mono transition-all rounded-xs flex items-center gap-1.5 ${
+                  isActive
+                    ? "bg-[#FF6B35] text-slate-950 font-bold shadow-[0_0_12px_rgba(255,107,53,0.3)]"
+                    : "text-slate-300 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                <span className={isActive ? "text-slate-950" : "text-amber-500 font-bold"}>
+                  [{station.code}]
+                </span>
+                <span>{station.title}</span>
+              </button>
+            );
+          })}
         </nav>
 
-        {/* ── Studio Call To Action ── */}
-        <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+        {/* Action Button */}
+        <div className="hidden sm:flex items-center gap-3">
           <button
-            onClick={handleStartProject}
-            className="gold-btn px-5 py-2.5 rounded-md text-[11px] font-mono font-bold tracking-widest uppercase flex items-center gap-1.5 cursor-pointer shadow-md"
+            onClick={onStartProject || (() => scrollTo("dispatch"))}
+            className="workshop-btn-primary"
           >
-            <span>START A PROJECT</span>
+            <span>DISPATCH INQUIRY</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        {/* ── Mobile Trigger ── */}
-        <div className="lg:hidden flex items-center gap-2">
+        {/* Mobile Hamburger */}
+        <div className="flex sm:hidden items-center gap-2">
           <button
-            onClick={handleStartProject}
-            className="gold-btn px-3 py-1.5 rounded text-[10px] font-mono font-bold tracking-widest uppercase"
+            onClick={onStartProject || (() => scrollTo("dispatch"))}
+            className="px-2.5 py-1 text-[11px] font-mono font-bold bg-[#FF6B35] text-slate-950 rounded-xs"
           >
-            CONTACT
+            INQUIRE
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded text-slate-300 hover:text-[#ECC45F] hover:bg-white/5 transition-colors focus:outline-none"
-            aria-label={mobileMenuOpen ? "Close scene menu" : "Open scene menu"}
-            aria-expanded={mobileMenuOpen}
+            className="p-2 text-slate-300 hover:text-white border border-white/10 rounded-xs bg-[#101726]"
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-amber-500" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* ── Mobile Slate Drawer ── */}
-      <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          mobileMenuOpen ? "max-h-[380px] opacity-100" : "max-h-0 opacity-0"
-        }`}
-        aria-hidden={!mobileMenuOpen}
-      >
-        <div className="bg-[#0A0F1D] border-t border-[#D4A838]/20 px-6 pt-4 pb-6 space-y-3 font-mono">
-          <div className="flex items-center gap-2 text-[10px] text-[#ECC45F] pb-2 border-b border-slate-800">
-            <Radio className="w-3 h-3 text-emerald-400 animate-pulse" />
-            <span>STUDIO NAVIGATION // SCENE SELECT</span>
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden bg-[#090D14]/98 border-b border-white/10 px-6 py-6 flex flex-col gap-3 font-mono text-sm animate-in fade-in duration-200">
+          <div className="text-[10px] text-slate-500 uppercase tracking-widest pb-1 border-b border-white/5">
+            // WORKSHOP STATIONS
           </div>
-
-          <nav className="flex flex-col gap-2.5" aria-label="Mobile navigation">
-            {NAV_SCENES.map((scene) => (
-              <button
-                key={scene.section}
-                onClick={() => scrollToSection(scene.section)}
-                className="text-left text-sm text-slate-200 hover:text-[#ECC45F] transition-colors py-1 flex items-center justify-between uppercase tracking-wider"
-              >
-                <span>{scene.label}</span>
-                <span className="text-xs text-[#D4A838]/60 font-mono">SCENE {scene.sceneNum}</span>
-              </button>
-            ))}
-          </nav>
-
-          <div className="pt-3 border-t border-slate-800">
+          {WORKSHOP_STATIONS.map((station) => (
             <button
-              onClick={handleStartProject}
-              className="w-full gold-btn py-3 rounded text-xs font-mono font-bold tracking-widest uppercase flex items-center justify-center gap-2"
+              key={station.id}
+              onClick={() => scrollTo(station.id)}
+              className="flex items-center justify-between py-2 text-left text-slate-200 hover:text-[#FF6B35] border-b border-white/5"
             >
-              <span>INITIATE PROJECT // TRANSMIT</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <span className="flex items-center gap-2">
+                <span className="text-[#FF6B35] font-bold">[{station.code}]</span>
+                <span>{station.title}</span>
+              </span>
+              <span className="text-[10px] text-slate-500">{station.descriptor}</span>
             </button>
+          ))}
+          <div className="pt-2 flex flex-col gap-2">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (onStartProject) onStartProject();
+                else scrollTo("dispatch");
+              }}
+              className="w-full workshop-btn-primary py-2.5 text-center text-xs"
+            >
+              INITIALIZE INQUIRY // DISPATCH
+            </button>
+            <a
+              href={PERSONAL_INFO.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-center py-2 text-xs text-emerald-400 border border-emerald-500/30 rounded-xs bg-emerald-950/20 font-bold"
+            >
+              DIRECT WHATSAPP HOTLINE
+            </a>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };

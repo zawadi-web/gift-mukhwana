@@ -1,136 +1,151 @@
 "use client";
 
 import React from "react";
-import { Code, CheckCircle, Globe2, Briefcase, Terminal, Shield, Sparkles } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
-import { GMLogo } from "./GMLogo";
+import { Shield, Terminal, Globe, Award, CheckCircle2, ArrowUpRight, Cpu } from "lucide-react";
 
 export const About: React.FC = () => {
   return (
-    <section id="about" className="bg-[#070A12] py-24 md:py-32 text-slate-100 border-b border-[#D4A838]/20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* ── Scene Header ── */}
-        <div className="text-left mb-16 space-y-3 pb-6 border-b border-slate-800">
-          <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-widest text-[#ECC45F] uppercase">
-            <Sparkles className="w-4 h-4 text-[#D4A838]" />
-            <span>SCENE 05 // SYSTEM MONOGRAPH</span>
+    <section id="craftsman" className="py-24 sm:py-32 px-4 sm:px-8 border-b border-white/10 bg-[#0B0F18] relative">
+      <div className="max-w-7xl mx-auto">
+        {/* Station Subheader */}
+        <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 text-xs font-mono mb-12">
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-0.5 bg-[#FF6B35] text-slate-950 font-bold text-[10px] tracking-wider rounded-xs">
+              STATION 04
+            </span>
+            <span className="text-slate-200 font-semibold tracking-wide">
+              BUILDER DOSSIER // PROFESSIONAL PROFILE & PRINCIPLES
+            </span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
-            THE DEVELOPER BEHIND THE WORK
-          </h2>
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl font-light">
-            An engineering identity built on technical capability, reliable execution, and software that travels anywhere.
-          </p>
+          <div className="flex items-center gap-2 text-slate-500">
+            <span>OPERATING MODEL: LOCATION-INDEPENDENT</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          {/* Left Column: Dossier Card */}
+          <div className="lg:col-span-5 bg-[#0F1522] border border-white/15 rounded-xs p-6 sm:p-8 registration-corner shadow-2xl">
+            <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/10 text-xs font-mono">
+              <span className="text-[#FF6B35] font-bold">[ENGINEER IDENTIFICATION]</span>
+              <span className="text-emerald-400 font-bold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 beacon-active" />
+                ACTIVE
+              </span>
+            </div>
 
-          {/* ── Left Column: Studio Developer Console (No personal portrait) ── */}
-          <div className="lg:col-span-5">
-            <div className="viewfinder-bracket bg-[#0D1322] text-white rounded-xl p-8 border border-slate-800 shadow-2xl relative overflow-hidden">
-              {/* Subtle ambient amber backdrop */}
-              <div className="absolute top-0 right-0 w-44 h-44 bg-[#D4A838]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="mb-6">
+              <div className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-1">CRAFTSMAN</div>
+              <h3 className="text-3xl font-bold text-slate-100 tracking-tight">Gift Mukhwana</h3>
+              <div className="text-sm font-mono text-[#FF6B35] mt-1 font-semibold">
+                Software Developer & Systems Builder
+              </div>
+            </div>
 
-              <div className="space-y-6 relative z-10">
-                {/* Emblem Frame */}
-                <div className="flex items-center space-x-4">
-                  <div className="p-3.5 rounded-xl bg-[#06090E] border-2 border-[#D4A838] shadow-md flex items-center justify-center">
-                    <GMLogo variant="mark" mode="dark" size="lg" />
+            <div className="space-y-3 font-mono text-xs border-y border-white/10 py-5 my-6">
+              <div className="flex justify-between">
+                <span className="text-slate-500">COLLABORATION:</span>
+                <span className="text-slate-200 font-bold">Remote Worldwide</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">SPECIALIZATION:</span>
+                <span className="text-slate-200 font-bold">Systems, POS, Full-Stack Web</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">PRIMARY TOOLING:</span>
+                <span className="text-slate-200 font-bold">Next.js · React 19 · TypeScript</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">DATABASE SCOPE:</span>
+                <span className="text-slate-200 font-bold">PostgreSQL · Prisma ORM</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">PAYMENT GATEWAYS:</span>
+                <span className="text-emerald-400 font-bold">M-Pesa Daraja · Paystack</span>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-2">
+              <a
+                href={PERSONAL_INFO.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="workshop-btn-secondary text-xs py-2 px-3 w-full text-center flex items-center justify-center gap-2"
+              >
+                <span>VERIFIED GITHUB: zawadi-web</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Right Column: Editorial Bio & Code of Engineering */}
+          <div className="lg:col-span-7 flex flex-col justify-between">
+            <div>
+              <div className="text-xs font-mono text-[#FF6B35] uppercase tracking-wider mb-2">
+                // PHILOSOPHY & WORK ETHIC
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-100 mb-6 leading-snug">
+                I build software to solve operational bottlenecks, not to pad a portfolio.
+              </h2>
+
+              <div className="space-y-4 font-sans text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+                <p>
+                  I&apos;m <strong>Gift Mukhwana</strong>, an independent software developer working with businesses, startups, and institutions globally. My focus is engineering production software systems that businesses actually depend on every single day.
+                </p>
+                <p>
+                  Too much modern software is bloated, fragile, and designed around visual trends rather than real operational constraints. When a store cashier needs to check out an order, they can&apos;t wait for a 5-second bundle download or fail because the store Wi-Fi dipped. When a customer pays, the transaction handler cannot drop an order webhook.
+                </p>
+                <p>
+                  Whether architecting an offline-first retail POS platform, an intentional social matching application, or an executive transport booking engine, I believe in:
+                </p>
+              </div>
+
+              {/* The 4 Tenets */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="p-4 bg-[#0F1522] border border-white/10 rounded-xs">
+                  <div className="text-xs font-mono font-bold text-slate-100 mb-1 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#FF6B35]" />
+                    <span>ZERO UNVETTED BLOAT</span>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-black text-white uppercase tracking-wider">
-                      {PERSONAL_INFO.name}
-                    </h3>
-                    <span className="text-xs font-mono text-[#ECC45F] block font-semibold">
-                      {PERSONAL_INFO.roleTitle}
-                    </span>
-                    <span className="text-[11px] font-mono text-emerald-400 flex items-center mt-1 gap-1">
-                      <Globe2 className="w-3 h-3 text-emerald-400" />
-                      <span>{PERSONAL_INFO.location}</span>
-                    </span>
-                  </div>
+                  <p className="text-xs text-slate-400 font-sans">
+                    Every dependency is deliberate. Lean bundles, fast load times, and near-zero runtime overhead.
+                  </p>
                 </div>
 
-                {/* Key Studio Attributes */}
-                <div className="space-y-2.5 pt-4 border-t border-slate-800 text-xs font-mono">
-                  <div className="flex items-center justify-between p-2.5 rounded bg-[#11182B] border border-slate-800/80">
-                    <span className="text-slate-400">Core Focus</span>
-                    <span className="text-[#ECC45F] font-semibold">Business Software &amp; Systems</span>
+                <div className="p-4 bg-[#0F1522] border border-white/10 rounded-xs">
+                  <div className="text-xs font-mono font-bold text-slate-100 mb-1 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    <span>DEFENSIVE DATA SCHEMAS</span>
                   </div>
-                  <div className="flex items-center justify-between p-2.5 rounded bg-[#11182B] border border-slate-800/80">
-                    <span className="text-slate-400">Engineering Style</span>
-                    <span className="text-slate-200">Pragmatic · Production-Ready</span>
-                  </div>
-                  <div className="flex items-center justify-between p-2.5 rounded bg-[#11182B] border border-slate-800/80">
-                    <span className="text-slate-400">Availability</span>
-                    <span className="text-emerald-400 font-semibold">Remote &amp; Contract Builds</span>
-                  </div>
-                  <div className="flex items-center justify-between p-2.5 rounded bg-[#11182B] border border-slate-800/80">
-                    <span className="text-slate-400">Work Mode</span>
-                    <span className="text-slate-200">Location-Independent</span>
-                  </div>
+                  <p className="text-xs text-slate-400 font-sans">
+                    Relational integrity, foreign keys, and strict TypeScript types from database to UI.
+                  </p>
                 </div>
 
-                {/* GitHub link preview */}
-                <div className="pt-2">
-                  <a
-                    href={PERSONAL_INFO.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-[#18223C] hover:bg-[#D4A838] hover:text-[#06090E] text-slate-200 text-xs font-mono py-3 px-4 rounded-lg flex items-center justify-center space-x-2 transition-all border border-slate-700/80 cursor-pointer"
-                  >
-                    <Terminal className="w-4 h-4" />
-                    <span>VERIFY CODE ON GITHUB // {PERSONAL_INFO.github}</span>
-                  </a>
+                <div className="p-4 bg-[#0F1522] border border-white/10 rounded-xs">
+                  <div className="text-xs font-mono font-bold text-slate-100 mb-1 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+                    <span>TRANSPARENT ENGINEERING</span>
+                  </div>
+                  <p className="text-xs text-slate-400 font-sans">
+                    Clear project milestones, live staging URLs, and honest communication about capabilities.
+                  </p>
+                </div>
+
+                <div className="p-4 bg-[#0F1522] border border-white/10 rounded-xs">
+                  <div className="text-xs font-mono font-bold text-slate-100 mb-1 flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-amber-400" />
+                    <span>LONG-TERM STABILITY</span>
+                  </div>
+                  <p className="text-xs text-slate-400 font-sans">
+                    Clean commit histories, documented code, and post-deployment reliability guarantees.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
-          {/* ── Right Column: Narrative & Professional Identity ── */}
-          <div className="lg:col-span-7 space-y-6">
-
-            <div className="space-y-4 text-slate-300 text-base leading-relaxed font-light">
-              <p className="text-xl text-white font-medium">
-                I’m Gift Mukhwana, a software developer engineering digital systems, web applications, and business software built to operate reliably across borders.
-              </p>
-              <p>
-                My professional identity is rooted in technical capability, practical problem-solving, and the measurable value delivered to clients—not tied to any single town or region. As a mobile, location-independent developer, I collaborate with organizations and founders remotely, delivering high-performance digital products that scale wherever they are deployed.
-              </p>
-              <p>
-                Whether building a full-stack platform with authenticated portals and payment integrations, architecting a bespoke operational dashboard, or deploying high-conversion web infrastructure, I approach every build with rigorous type safety, modular architecture, and user-centric clarity.
-              </p>
-              <div className="p-4 rounded-lg bg-[#11182B] border-l-4 border-[#D4A838] border border-slate-800 text-slate-200 font-mono text-sm">
-                &quot;Software should solve a concrete operational problem and create real business leverage, anywhere in the world.&quot;
-              </div>
-            </div>
-
-            {/* Core Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-              <div className="bg-[#0D1322] p-4 rounded-lg border border-slate-800 space-y-1.5">
-                <Briefcase className="w-5 h-5 text-[#ECC45F] mb-1" />
-                <h4 className="text-xs font-bold text-white uppercase font-mono">Business First</h4>
-                <p className="text-xs text-slate-400 font-light">Aligning software architecture with operational goals and client ROI.</p>
-              </div>
-
-              <div className="bg-[#0D1322] p-4 rounded-lg border border-slate-800 space-y-1.5">
-                <Code className="w-5 h-5 text-[#ECC45F] mb-1" />
-                <h4 className="text-xs font-bold text-white uppercase font-mono">Clean Code</h4>
-                <p className="text-xs text-slate-400 font-light">Maintainable TypeScript, Prisma schemas, and tested endpoints.</p>
-              </div>
-
-              <div className="bg-[#0D1322] p-4 rounded-lg border border-slate-800 space-y-1.5">
-                <Globe2 className="w-5 h-5 text-[#ECC45F] mb-1" />
-                <h4 className="text-xs font-bold text-white uppercase font-mono">Remote Ready</h4>
-                <p className="text-xs text-slate-400 font-light">Asynchronous workflows, transparent git history, and global availability.</p>
-              </div>
-            </div>
-
-          </div>
-
         </div>
-
       </div>
     </section>
   );
